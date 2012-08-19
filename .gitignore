@@ -1,5 +1,13 @@
 *.py[co]
 
+# Temporary or backup files
+*.py~
+*.txt~
+*.md~
+
+# Don't add the git folder
+.git
+
 # Packages
 *.egg
 *.egg-info
@@ -20,8 +28,37 @@ pip-log.txt
 .coverage
 .tox
 
-#Translations
+# Translations
 *.mo
 
-#Mr Developer
+# Mr Developer
 .mr.developer.cfg
+
+# Compiled source 
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages 
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases 
+*.log
+*.sql
+*.sqlite
+
+# OS generated files 
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db

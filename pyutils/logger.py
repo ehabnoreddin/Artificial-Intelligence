@@ -1,21 +1,21 @@
 #!/usr/bin/env python
 
 '''
-File:
-	logger.py
+	File:
+		logger.py
 
-Description:
-	A general purpose logging module. It may be simple but it contains 
-flashy colors... on Unix based systems that is! This module was wrote for
-CS440 at Colorado State Universty. These colors should work through SSH,
-PuTTy and on OSX's terminal as well as any Linux terminal. It's also
-possible to use on Windows with some tweaks to the Windows console.
+	Description:
+		A general purpose logging module. It may be simple but it contains 
+	flashy colors... on Unix based systems that is! This module was wrote for
+	CS440 at Colorado State Universty. These colors should work through SSH,
+	PuTTy and on OSX's terminal as well as any Linux terminal. It's also
+	possible to use on Windows with some tweaks to the Windows console.
 
-Author:
-	Corey Prophitt <prophitt.corey@gmail.com> <www.marustudios.com>
+	Author:
+		Corey Prophitt <prophitt.corey@gmail.com> <www.marustudios.com>
 
-License:
-	GPLv3, see license.txt for more details.
+	License:
+		GPLv3, see license.txt for more details.
 '''
 
 

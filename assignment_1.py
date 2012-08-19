@@ -4,6 +4,7 @@
 	File: 	assignment_1.py
 	Author: Corey Prophitt <prophitt.corey@gmail.com>
 	Class:	CS440
+	License: GPLv3, see license.txt for more details.
 '''
 
 
@@ -60,7 +61,7 @@ def successorsf(graph, node):
 	log.debug_write('Entering successorsf.')
     
 	if graph is None:
-		log.write('Graph is None. Returning None.', 'ERROR')
+		log.debug_write('Graph is None. Returning None.', 'ERROR')
 		return None
 
 	if node not in graph:
@@ -98,8 +99,12 @@ if __name__ == '__main__':
 	from unittest import main, TestCase
 
 	
-	log.write('Starting Unit Tests..', 'NOTICE')
+	log.debug_write('Starting Unit Tests..', 'NOTICE')
 
+	#
+	# Successorsf Tests
+	#
+	
 	class SuccessorsfTests(TestCase):
 
 		def setUp(self):
@@ -134,6 +139,40 @@ if __name__ == '__main__':
 			expected = None
 			self.assertEquals(successors, expected)      
 
+			
+	#
+	# BFS Tests
+	#
 
-	# Run all the tests
+	class BreadthFirstSearchTests(TestCase):
+	
+		def setUp(self):
+			pass
+			
+		def tearDown(self):
+			pass
+			
+		def test_not_a_valid_node(self):
+			pass
+		
+		
+	#
+	# DFS Tests
+	#
+	
+	class DepthFirstSearchTests(TestCase):
+	
+		def setUp(self):
+			pass
+			
+		def tearDown(self):
+			pass
+			
+		def test_not_a_valid_node(self):
+			pass
+			
+	#
+	# Run all tests and exit
+	#
+	
 	main()

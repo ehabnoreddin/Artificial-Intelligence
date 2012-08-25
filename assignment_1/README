@@ -4,10 +4,39 @@ Author:		Corey Prophitt <prophitt.corey@gmail.com>
 
 1) Description of the hardest parts of the assignment.
 
+I found the most difficult part of the assignment to be getting the expected
+output with the search implementation. The algorithm appears straight forward
+but implementing it and testing it was much more intensive than I had thought.
+Luckily we had an example of the expected output and I was able to keep making
+changes to the algorithm to get the proper output. Even then I found a number
+of tests to be useful and implemented them via Python's unit testing module.
 
 2) Where you found the help you needed to solve this assignment.
 
+I found a number of Wikipedia entries to be very informative.
+
+http://en.wikipedia.org/wiki/Uninformed_search#Uninformed_search
+http://en.wikipedia.org/wiki/Breadth-first_search
+http://en.wikipedia.org/wiki/Depth-first_search
+
+I also found the notes for Week 1 to be useful.
+
+http://www.cs.colostate.edu/~anderson/cs440/index.html/doku.php?id=notes:week1a
+http://www.cs.colostate.edu/~anderson/cs440/index.html/doku.php?id=notes:week1b
+http://www.cs.colostate.edu/~anderson/cs440/index.html/doku.php?id=notes:week1c
 
 3) Search concepts or Python details that you wish we had covered before the 
 assignment.
 
+I found the assignment to be very straight forward and easy to follow. I found
+the use of the 'successorsf' function to be a little confusing at first. There
+was little said about why we were using it. I think everyone would benefit by
+knowing more about why we pass in the function to the search algorithm.
+
+As far as 'search' is concerned, it would have been nice to know more about what
+an uninformed search was and why we would begin using them. I found out a lot of
+information via Wikipedia (linked above). I believe students would benefit if
+there was a little more discussion about uninformed search versus informed search.
+
+As for the Python language I had no problems. I am fairly familiar with the 
+language and I enjoy using it. I adapted very quickly. 

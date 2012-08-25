@@ -23,10 +23,9 @@ from sys import exit
 #
 # Custom Library Imports
 #
-
 try:
     # My own custom logging utility
-    from pyutils.logger import (DummyColorProvidor, 
+    from logger import (DummyColorProvidor, 
                                 UnixColorProvidor, 
                                 ConsoleLogger)
 except ImportError:
@@ -34,12 +33,12 @@ except ImportError:
 
 try:
     # My own debugging utilities
-    from ..pyutils.debug import debug
+    from debug import debug
 except ImportError:
     exit('Problem importing debug.py, is the file/folder missing?')
 
 try:
-    from search import bfs, dfs
+    from search import breadthFirstSearch, depthFirstSearch
 except ImportError:
     exit('Problem importing search.py, is the file/folder missing?')
 
@@ -47,7 +46,6 @@ except ImportError:
 #
 # Setup Logging
 #
-
 if os_name is 'posix':
     color_providor = UnixColorProvidor()
 else:
@@ -58,7 +56,7 @@ log = ConsoleLogger(color_providor)
 
 
 #
-# The Graph
+# The example graph
 #
 
 successors = {'a':  ['b', 'c', 'd'],
@@ -86,25 +84,24 @@ def successorsf(graph, node):
 
              Returns None if the graph is None.
     '''
-	if graph is None:
-		return None
+    
+    if graph is None:
+        return None
 
-	if node not in graph:
-		return list()
+    if node not in graph:
+        return list()
 
-	return graph[node]
+    return graph[node]
 
 
 if __name__ == '__main__':
     
-    log.write('Starting assignment example..')
+    log.write('Starting assignment examples')
     
-    log.write('Finished assignment example.')
-
-    print('\n\n')
+    log.write('Finished assignment examples\n')
 
 
-    # Used for unit testing the current module when run as main 
+    # Used for additional unit testing
     from unittest import main, TestCase
     
     
@@ -131,7 +128,7 @@ if __name__ == '__main__':
             def test_no_node_in_graph(self):
                     node = 'z' 
                     successors = successorsf(self.graph, node)
-                    expected = [] # Empty list when node doesn't exist!
+                    expected = [] 
                     self.assertEquals(successors, expected)      
 
             def test_node_in_graph(self):
@@ -145,6 +142,7 @@ if __name__ == '__main__':
                     successors = successorsf(None, node)
                     expected = None
                     self.assertEquals(successors, expected)
+                    
 
     #
     # Run all tests and exit

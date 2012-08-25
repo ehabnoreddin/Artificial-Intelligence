@@ -25,9 +25,7 @@ from sys import exit
 #
 try:
     # My own custom logging utility
-    from logger import (DummyColorProvidor, 
-                                UnixColorProvidor, 
-                                ConsoleLogger)
+    from logger import (DummyColorProvidor, UnixColorProvidor, ConsoleLogger)
 except ImportError:
     exit('Problem importing logger.py, is the file/folder missing?')
 
@@ -38,6 +36,7 @@ except ImportError:
     exit('Problem importing debug.py, is the file/folder missing?')
 
 try:
+    # Our implementation of BFS and DFS
     from search import breadthFirstSearch, depthFirstSearch
 except ImportError:
     exit('Problem importing search.py, is the file/folder missing?')
@@ -59,6 +58,7 @@ log = ConsoleLogger(color_providor)
 # The example graph
 #
 
+# This is the example graph given for this assignment
 successors = {'a':  ['b', 'c', 'd'],
               'b':  ['e', 'f', 'g'],
               'c':  ['a', 'h', 'i'],
@@ -82,10 +82,11 @@ def successorsf(graph, node):
              Returns an empty list if the 'node' doesn't exist, or if the node
              has no children.
 
-             Returns None if the graph is None.
+             Returns None if the graph is None or if the argument wasn't a
+             Python dictionary.
     '''
     
-    if graph is None:
+    if graph is None or not isinstance(graph, dict):
         return None
 
     if node not in graph:
@@ -103,6 +104,8 @@ if __name__ == '__main__':
 
     # Used for additional unit testing
     from unittest import main, TestCase
+
+    log.write('Starting additional unit tests\n', 'EVENT')
     
     
     #
@@ -113,7 +116,7 @@ if __name__ == '__main__':
 
             def setUp(self):
 
-                    # The graph.. Node -> Accessible Node
+                    # The graph.. Node -> Accessible Node(s)
                     self.graph = {'a':  ['b', 'c', 'd'],
                                   'b':  ['e', 'f', 'g'],
                                   'c':  ['a', 'h', 'i'],
@@ -142,7 +145,45 @@ if __name__ == '__main__':
                     successors = successorsf(None, node)
                     expected = None
                     self.assertEquals(successors, expected)
-                    
+
+            def test_nondictionary_graph(self):
+                    node = 'a' 
+                    successors = successorsf("'a' : 123", node)
+                    expected = None
+                    self.assertEquals(successors, expected)
+
+
+    #
+    # Additional Breadth First Search Tests
+    #
+
+    class BreadthFirstSearchTests(TestCase):
+
+        def setUp(self):
+            pass
+
+        def tearDown(self):
+            pass
+
+        def test_path1(self):
+            pass
+
+
+    #
+    # Additional Depth First Search Tests
+    #
+
+    class DepthFirstSearchTests(TestCase):
+
+        def setUp(self):
+            pass
+
+        def tearDown(self):
+            pass
+
+        def test_path1(self):
+            pass
+
 
     #
     # Run all tests and exit

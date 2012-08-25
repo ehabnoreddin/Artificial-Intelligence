@@ -13,10 +13,16 @@
 #
 
 def breadthFirstSearch(startState, endState, successorsf):
+    '''
+    '''
+    
     pass
 
 
 def depthFirstSearch(startState, endState, successorsf):
+    '''
+    '''
+    
     pass
 
 

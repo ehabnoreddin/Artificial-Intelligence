@@ -96,8 +96,8 @@ if __name__ == '__main__':
     log.write('Starting assignment examples\n')
     print("Breadth-first\n")
     print("path from a to a is", breadthFirstSearch('a','a', successorsf))
-    #print("path from a to m is", breadthFirstSearch('a','m', successorsf))
-    #print("path from a to z is", breadthFirstSearch('a','z', successorsf))
+    print("path from a to m is", breadthFirstSearch('a','m', successorsf))
+    print("path from a to z is", breadthFirstSearch('a','z', successorsf))
 
     print("\nDepth-first\n")
     print("path from a to a is", depthFirstSearch('a','a', successorsf))
@@ -128,7 +128,13 @@ if __name__ == '__main__':
                 node = 'NotInGraphAtAll' 
                 successors = successorsf(node)
                 expected = [] 
-                self.assertEquals(successors, expected)      
+                self.assertEquals(successors, expected)
+
+            def test_leaf_node(self):
+                node = 'z'
+                successors = successorsf(node)
+                expected = []
+                self.assertEquals(successors, expected)
 
             def test_node_in_graph(self):
                 node = 'a' 
@@ -136,7 +142,7 @@ if __name__ == '__main__':
                 expected = ['b', 'c', 'd']
                 self.assertEquals(successors, expected)      
 
-            def test_none_gnode(self):
+            def test_none_node(self):
                 node = None
                 successors = successorsf(node)
                 expected = None

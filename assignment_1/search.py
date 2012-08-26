@@ -15,21 +15,28 @@
 def breadthFirstSearch(startState, endState, successorsf):
     '''
     '''
-    
+
     unvisited = [startState]
-    visited = []
+    path = []
 
     while unvisited:
         node = unvisited.pop()
-        visited.append(node)
+        path.append(node)
+        if node == endState:
+            return path
+
+        # Let's go across and see if the endNode is here..
         children = successorsf(node)
         for childNode in children:
-            if childNode not in visited and childNode not in unvisited:
-                unvisited.append(childNode)
             if childNode == endState:
-                return visited
-        visited = []
+                path.append(childNode)
+                return path
+            if childNode not in path and childNode not in unvisited:
+                unvisited.append(childNode)
 
+    # Returns an empty list, no path was available from start to end.
+    return list()
+            
 
 def depthFirstSearch(startState, endState, successorsf):
     '''

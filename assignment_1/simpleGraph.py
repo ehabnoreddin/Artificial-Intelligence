@@ -68,12 +68,9 @@ successors = {'a':  ['b', 'c', 'd'],
               'k':  ['z']}
 
              
-def successorsf(graph, node):
+def successorsf(node):
     '''
     Input:
-             A 'graph' represented as a Python dictionary of
-             node -> children pairs.
-            
              A 'node' representing the node you are looking up.
             
     Output:
@@ -82,17 +79,16 @@ def successorsf(graph, node):
              Returns an empty list if the 'node' doesn't exist, or if the node
              has no children.
 
-             Returns None if the graph is None or if the argument wasn't a
-             Python dictionary.
+             Returns None if the 'node' wasn't a string or if the Node was None.
     '''
     
-    if graph is None or not isinstance(graph, dict):
+    if node is None or not isinstance(node, str):
         return None
 
-    if node not in graph:
+    if node not in successors:
         return list()
 
-    return graph[node]
+    return successors[node]
 
 
 if __name__ == '__main__':
@@ -100,8 +96,8 @@ if __name__ == '__main__':
     log.write('Starting assignment examples\n')
     print("Breadth-first\n")
     print("path from a to a is", breadthFirstSearch('a','a', successorsf))
-    print("path from a to m is", breadthFirstSearch('a','m', successorsf))
-    print("path from a to z is", breadthFirstSearch('a','z', successorsf))
+    #print("path from a to m is", breadthFirstSearch('a','m', successorsf))
+    #print("path from a to z is", breadthFirstSearch('a','z', successorsf))
 
     print("\nDepth-first\n")
     print("path from a to a is", depthFirstSearch('a','a', successorsf))
@@ -123,42 +119,34 @@ if __name__ == '__main__':
     class SuccessorsfTests(TestCase):
 
             def setUp(self):
-
-                    # The graph.. Node -> Accessible Node(s)
-                    self.graph = {'a':  ['b', 'c', 'd'],
-                                  'b':  ['e', 'f', 'g'],
-                                  'c':  ['a', 'h', 'i'],
-                                  'd':  ['j', 'z'],
-                                  'e':  ['k', 'l'],
-                                  'g':  ['m'],
-                                  'k':  ['z']}
+                pass
 
             def tearDown(self):
-                    pass
+                pass
 
             def test_no_node_in_graph(self):
-                    node = 'z' 
-                    successors = successorsf(self.graph, node)
-                    expected = [] 
-                    self.assertEquals(successors, expected)      
+                node = 'NotInGraphAtAll' 
+                successors = successorsf(node)
+                expected = [] 
+                self.assertEquals(successors, expected)      
 
             def test_node_in_graph(self):
-                    node = 'a' 
-                    successors = successorsf(self.graph, node)
-                    expected = ['b', 'c', 'd']
-                    self.assertEquals(successors, expected)      
+                node = 'a' 
+                successors = successorsf(node)
+                expected = ['b', 'c', 'd']
+                self.assertEquals(successors, expected)      
 
-            def test_null_graph(self):
-                    node = 'a' 
-                    successors = successorsf(None, node)
-                    expected = None
-                    self.assertEquals(successors, expected)
+            def test_none_gnode(self):
+                node = None
+                successors = successorsf(node)
+                expected = None
+                self.assertEquals(successors, expected)
 
-            def test_nondictionary_graph(self):
-                    node = 'a' 
-                    successors = successorsf("'a' : 123", node)
-                    expected = None
-                    self.assertEquals(successors, expected)
+            def test_nonstring_node(self):
+                node = 234234 
+                successors = successorsf(node)
+                expected = None
+                self.assertEquals(successors, expected)
 
 
     #

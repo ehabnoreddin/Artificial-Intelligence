@@ -16,7 +16,19 @@ def breadthFirstSearch(startState, endState, successorsf):
     '''
     '''
     
-    pass
+    unvisited = [startState]
+    visited = []
+
+    while unvisited:
+        node = unvisited.pop()
+        visited.append(node)
+        children = successorsf(node)
+        for childNode in children:
+            if childNode not in visited and childNode not in unvisited:
+                unvisited.append(childNode)
+            if childNode == endState:
+                return visited
+        visited = []
 
 
 def depthFirstSearch(startState, endState, successorsf):

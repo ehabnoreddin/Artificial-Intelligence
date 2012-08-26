@@ -12,34 +12,29 @@
 # The graph search algorithms (BFS, DFS)
 #
 
-def breadthFirstSearch(startState, endState, successorsf):
+def breadthFirstSearch(startState, goalState, successorsf):
     '''
+    Performs a breadth first search traveral on a graph.
+
+    Input:
+        A 'startState', a 'goalState' and a successors function.
+    Output:
+        A list representing the path from the startState to the goalState.
+        Returns an empty list if a path doesn't exist.
     '''
-
-    unvisited = [startState]
-    path = []
-
-    while unvisited:
-        node = unvisited.pop()
-        path.append(node)
-        if node == endState:
-            return path
-
-        # Let's go across and see if the endNode is here..
-        children = successorsf(node)
-        for childNode in children:
-            if childNode == endState:
-                path.append(childNode)
-                return path
-            if childNode not in path and childNode not in unvisited:
-                unvisited.append(childNode)
-
-    # Returns an empty list, no path was available from start to end.
-    return list()
+    
+    pass
             
 
-def depthFirstSearch(startState, endState, successorsf):
+def depthFirstSearch(startState, goalState, successorsf):
     '''
+    Performs a depth first search traveral on a graph.
+
+    Input:
+        A 'startState', a 'goalState' and a successors function.
+    Output:
+        A list representing the path from the startState to the goalState.
+        Returns an empty list if a path doesn't exist.
     '''
     
     pass

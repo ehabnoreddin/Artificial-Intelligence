@@ -97,8 +97,16 @@ def successorsf(graph, node):
 
 if __name__ == '__main__':
     
-    log.write('Starting assignment examples')
-    
+    log.write('Starting assignment examples\n')
+    print("Breadth-first\n")
+    print("path from a to a is", breadthFirstSearch('a','a', successorsf))
+    print("path from a to m is", breadthFirstSearch('a','m', successorsf))
+    print("path from a to z is", breadthFirstSearch('a','z', successorsf))
+
+    print("\nDepth-first\n")
+    print("path from a to a is", depthFirstSearch('a','a', successorsf))
+    print("path from a to m is", depthFirstSearch('a','m', successorsf))
+    print("path from a to z is", depthFirstSearch('a','z', successorsf), '\n')
     log.write('Finished assignment examples\n')
 
 

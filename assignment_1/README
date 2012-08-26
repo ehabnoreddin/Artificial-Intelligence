@@ -1,17 +1,22 @@
 File
-===
-	`README.txt`
+====
+	README.txt
+	
 	
 Assignment
-===
-	`1 - Search`
+==========
+	1 - Search (Uninformed BFS and DFS)
+	
 	
 Author
-===
-	`Corey Prophitt <prophitt.corey@gmail.com>`
+======
+	Corey Prophitt <prophitt.corey@gmail.com>
 
 	
-`1) Description of the hardest parts of the assignment.`
+Questions
+=========
+	
+1) Description of the hardest parts of the assignment.
 
 I found the most difficult part of the assignment to be getting the expected
 output with the search implementation. The algorithm appears straight forward
@@ -25,7 +30,7 @@ created a private code repository and shell script for packaging my each of
 our class assignments. I even developed a small debugging module and a logging
 module for this class.
 
-`2) Where you found the help you needed to solve this assignment.`
+2) Where you found the help you needed to solve this assignment.
 
 I found a number of Wikipedia entries to be very informative.
 
@@ -39,8 +44,8 @@ http://www.cs.colostate.edu/~anderson/cs440/index.html/doku.php?id=notes:week1a
 http://www.cs.colostate.edu/~anderson/cs440/index.html/doku.php?id=notes:week1b
 http://www.cs.colostate.edu/~anderson/cs440/index.html/doku.php?id=notes:week1c
 
-`3) Search concepts or Python details that you wish we had covered before the 
-assignment.`
+3) Search concepts or Python details that you wish we had covered before the 
+assignment.
 
 I found the assignment to be very straight forward and easy to follow. I found
 the use of the 'successorsf' function to be a little confusing at first. There

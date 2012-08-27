@@ -79,14 +79,15 @@ def successorsf(node):
              Returns an empty list if the 'node' doesn't exist, or if the node
              has no children.
 
-             Returns None if the 'node' wasn't a string or if the Node was None.
+             Returns an empty list if the 'node' wasn't a string or
+             if the Node was None.
     '''
     
     if node is None or not isinstance(node, str):
-        return None
+        return []
 
     if node not in successors:
-        return list()
+        return []
 
     return successors[node]
 
@@ -145,13 +146,13 @@ if __name__ == '__main__':
             def test_none_node(self):
                 node = None
                 successors = successorsf(node)
-                expected = None
+                expected = []
                 self.assertEquals(successors, expected)
 
             def test_nonstring_node(self):
                 node = 234234 
                 successors = successorsf(node)
-                expected = None
+                expected = []
                 self.assertEquals(successors, expected)
 
 
@@ -162,14 +163,107 @@ if __name__ == '__main__':
     class BreadthFirstSearchTests(TestCase):
 
         def setUp(self):
-            pass
+            # Re-assign the default graph..
+            self.basic_graph = {
+                'a' : ['b', 'c'],
+                'b' : ['d', 'e'],
+                'c' : ['f', 'g'],
+                'd' : ['h', 'i'],
+                'e' : ['j', 'k'],
+                'f' : ['l', 'm'],
+                'g' : ['n', 'o'],
+            }
+
+            self.advanced_graph = {
+                'a' : [],
+                'b' : [],
+            }
 
         def tearDown(self):
             pass
 
-        def test_path1(self):
-            pass
+        def successorsf1(self, node):
+            if node is None or not isinstance(node, str):
+                return []
 
+            if node not in self.basic_graph:
+                return []
+
+            return self.basic_graph[node]
+
+        def successorsf2(self, node):
+            if node is None or not isinstance(node, str):
+                return []
+
+            if node not in self.advanced_graph:
+                return []
+
+            return self.advanced_graph[node]
+
+        def test_does_not_exist_start_state(self):
+            expected = []
+            actual = breadthFirstSearch('DNE', 'a', self.successorsf1)
+            self.assertEquals(actual, expected)
+
+        def test_does_not_exist_end_state(self):
+            expected = []
+            actual = breadthFirstSearch('a', 'DNE', self.successorsf1)
+            self.assertEquals(actual, expected)
+    
+        def test_does_not_exist_both_states(self):
+            expected = []
+            actual = breadthFirstSearch('DNE', 'DNE', self.successorsf1)
+            self.assertEquals(actual, expected)
+
+        def test_invalid_start_type(self):
+            expected = []
+            actual = breadthFirstSearch(123, 'a', self.successorsf1)
+            self.assertEquals(actual, expected)
+
+        def test_invalid_end_type(self):
+            expected = []
+            actual = breadthFirstSearch('a', 123, self.successorsf1)
+            self.assertEquals(actual, expected)
+
+        def test_invalid_types_both(self):
+            expected = []
+            actual = breadthFirstSearch(123, 456, self.successorsf1)
+            self.assertEquals(actual, expected)
+            
+        def test_basic_path_a(self):
+            expected = ['a']
+            actual = breadthFirstSearch('a', 'a', self.successorsf1)
+            self.assertEquals(actual, expected)
+
+        def test_basic_path_b(self):
+            expected = ['a', 'c']
+            actual = breadthFirstSearch('a', 'c', self.successorsf1)
+            self.assertEquals(actual, expected)
+            
+        def test_basic_path_c(self):
+            expected = ['a', 'c', 'f']
+            actual = breadthFirstSearch('a', 'f', self.successorsf1)
+            self.assertEquals(actual, expected)
+
+        def test_basic_path_d(self):
+            expected = ['b', 'e', 'k']
+            actual = breadthFirstSearch('b', 'k', self.successorsf1)
+            self.assertEquals(actual, expected)
+
+        def test_basic_path_e(self):
+            expected = ['g', 'o']
+            actual = breadthFirstSearch('g', 'o', self.successorsf1)
+            self.assertEquals(actual, expected)
+
+        def test_basic_path_f(self):
+            expected = ['a', 'c', 'f', 'l']
+            actual = breadthFirstSearch('a', 'l', self.successorsf1)
+            self.assertEquals(actual, expected)
+
+
+
+
+                
 
     #
     # Additional Depth First Search Tests

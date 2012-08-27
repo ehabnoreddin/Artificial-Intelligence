@@ -18,27 +18,36 @@ def breadthFirstSearch(startState, goalState, successorsf):
 
     Input:
         A 'startState', a 'goalState' and a successors function.
+        
     Output:
         A list representing the path from the startState to the goalState.
         Returns an empty list if a path doesn't exist.
     '''
     
     # A few checks up top, easy/quick bail outs
+    if not isinstance(startState, str):
+        return []
+
+    if not isinstance(goalState, str):
+        return []
+
+    if successorsf(startState) == []:
+        return []
+    
     if startState == goalState:
         return [startState]
     
-    if successorsf(startState) is None:
-        return []
-    
-    if successorsf(startState) is []:
-        return []
-    
     # Traverse the graph
     queue = [ [startState] ]
+    visited = []
     while queue:
         path = queue.pop(0)
         node = path[-1]
-
+        
+        if node in visited:
+            continue
+        visited.append(node)
+        
         if node == goalState:
             return path
             

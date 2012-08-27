@@ -30,6 +30,7 @@ created a private code repository and shell script for packaging my each of
 our class assignments. I even developed a small debugging module and a logging
 module for this class.
 
+
 2) Where you found the help you needed to solve this assignment.
 
 I found a number of Wikipedia entries to be very informative.
@@ -50,6 +51,11 @@ questions to be very useful.
 http://stackoverflow.com/questions/5368326/python-dfs-and-bfs
 http://stackoverflow.com/questions/8922060/breadth-first-search-trace-path
 http://stackoverflow.com/questions/1753257/can-this-breadth-first-search-be-made-faster
+
+A very useful website for graphs, especially DFS, was here:
+
+http://www.python.org/doc/essays/graphs/
+
 
 3) Search concepts or Python details that you wish we had covered before the 
 assignment.

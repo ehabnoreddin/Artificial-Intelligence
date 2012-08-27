@@ -23,7 +23,6 @@ def breadthFirstSearch(startState, goalState, successorsf):
         Returns an empty list if a path doesn't exist.
     '''
     
-    
     # A few checks up top, easy/quick bail outs
     if startState == goalState:
         return [startState]
@@ -35,8 +34,7 @@ def breadthFirstSearch(startState, goalState, successorsf):
         return []
     
     # Traverse the graph
-    queue = []
-    queue.append([startState])
+    queue = [ [startState] ]
     while queue:
         path = queue.pop(0)
         node = path[-1]
@@ -48,11 +46,13 @@ def breadthFirstSearch(startState, goalState, successorsf):
             newPath = list(path)
             newPath.append(childNode)
             queue.append(newPath)
-            
+
+    # If we've gotten to this point, the path doesn't exist
+    # so we return an empty list.
     return []
             
 
-def depthFirstSearch(startState, goalState, successorsf):
+def depthFirstSearch(startState, goalState, successorsf, path=[]):
     '''
     Performs a depth first search traveral on a graph.
 
@@ -62,8 +62,24 @@ def depthFirstSearch(startState, goalState, successorsf):
         A list representing the path from the startState to the goalState.
         Returns an empty list if a path doesn't exist.
     '''
+
+    path = path + [startState]
+    if startState == goalState:
+        return path
     
-    pass
+    if successorsf(startState) is None:
+        return []
+        
+    if successorsf(startState) is []:
+        return []
+    
+    for node in successorsf(startState):
+        if node not in path:
+            newPath = depthFirstSearch(node, goalState, successorsf, path)
+            if newPath: 
+                return newPath
+        
+    return []
 
 
 #

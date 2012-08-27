@@ -72,6 +72,12 @@ def depthFirstSearch(startState, goalState, successorsf, path=[]):
         Returns an empty list if a path doesn't exist.
     '''
 
+    if not isinstance(startState, str):
+        return []
+
+    if not isinstance(goalState, str):
+        return []
+
     path = path + [startState]
     if startState == goalState:
         return path

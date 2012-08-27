@@ -163,7 +163,6 @@ if __name__ == '__main__':
     class BreadthFirstSearchTests(TestCase):
 
         def setUp(self):
-            # Re-assign the default graph..
             self.basic_graph = {
                 'a' : ['b', 'c'],
                 'b' : ['d', 'e'],
@@ -259,8 +258,23 @@ if __name__ == '__main__':
         def test_class_example_c(self):
             expected = ['a', 'd', 'z']
             actual = breadthFirstSearch('a', 'z', successorsf)
+            self.assertEquals(actual, expected)                
+
+        def test_none_start(self):
+            expected = []
+            actual = breadthFirstSearch(None, 'z', successorsf)
             self.assertEquals(actual, expected)
-                
+
+        def test_none_end(self):
+            expected = []
+            actual = breadthFirstSearch('a', None, successorsf)
+            self.assertEquals(actual, expected)
+
+        def test_none_both(self):
+            expected = []
+            actual = breadthFirstSearch(None, None, successorsf)
+            self.assertEquals(actual, expected)
+     
 
     #
     # Additional Depth First Search Tests
@@ -269,7 +283,6 @@ if __name__ == '__main__':
     class DepthFirstSearchTests(TestCase):
 
         def setUp(self):
-            # Re-assign the default graph..
             self.basic_graph = {
                 'a' : ['b', 'c'],
                 'b' : ['d', 'e'],
@@ -365,6 +378,21 @@ if __name__ == '__main__':
         def test_class_example_c(self):
             expected = ['a', 'b', 'e', 'k', 'z']
             actual = depthFirstSearch('a', 'z', successorsf)
+            self.assertEquals(actual, expected)
+
+        def test_none_start(self):
+            expected = []
+            actual = depthFirstSearch(None, 'z', successorsf)
+            self.assertEquals(actual, expected)
+
+        def test_none_end(self):
+            expected = []
+            actual = depthFirstSearch('a', None, successorsf)
+            self.assertEquals(actual, expected)
+
+        def test_none_both(self):
+            expected = []
+            actual = depthFirstSearch(None, None, successorsf)
             self.assertEquals(actual, expected)
 
 

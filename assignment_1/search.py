@@ -75,11 +75,8 @@ def depthFirstSearch(startState, goalState, successorsf, path=[]):
     path = path + [startState]
     if startState == goalState:
         return path
-    
-    if successorsf(startState) is None:
-        return []
         
-    if successorsf(startState) is []:
+    if successorsf(startState) == []:
         return []
     
     for node in successorsf(startState):

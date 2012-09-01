@@ -25,10 +25,8 @@ Luckily we had an example of the expected output and I was able to keep making
 changes to the algorithm to get the proper output. Even then I found a number
 of tests to be useful and implemented them via Python's unit testing module.
 
-I also took a great deal of time setting up my work space and work flow. I
-created a private code repository and shell script for packaging my each of
-our class assignments. I even developed a small debugging module and a logging
-module for this class.
+In particular, the DepthFirstSearch algorithm gave me a bit of trouble with
+a few test cases.
 
 
 2) Where you found the help you needed to solve this assignment.

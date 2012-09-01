@@ -1,4 +1,5 @@
 *.py[co]
+.komodotools
 
 # Temporary or backup files
 *.py~

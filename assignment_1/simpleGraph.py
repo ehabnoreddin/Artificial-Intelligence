@@ -23,35 +23,12 @@ from sys import exit
 #
 # Custom Library Imports
 #
-try:
-    # My own custom logging utility
-    from logger import (DummyColorProvidor, UnixColorProvidor, ConsoleLogger)
-except ImportError:
-    exit('Problem importing logger.py, is the file/folder missing?')
-
-try:
-    # My own debugging utilities
-    from debug import debug
-except ImportError:
-    exit('Problem importing debug.py, is the file/folder missing?')
 
 try:
     # Our implementation of BFS and DFS
     from search import breadthFirstSearch, depthFirstSearch
 except ImportError:
     exit('Problem importing search.py, is the file/folder missing?')
-
-
-#
-# Setup Logging
-#
-if os_name is 'posix':
-    color_providor = UnixColorProvidor()
-else:
-    # No colors on Windows yet, sorry!
-    color_providor = DummyColorProvidor()
-
-log = ConsoleLogger(color_providor)
 
 
 #
@@ -94,7 +71,7 @@ def successorsf(node):
 
 if __name__ == '__main__':
     
-    log.write('Starting assignment examples\n')
+    print('Starting assignment examples\n')
     print("Breadth-first\n")
     print("path from a to a is", breadthFirstSearch('a','a', successorsf))
     print("path from a to m is", breadthFirstSearch('a','m', successorsf))
@@ -104,13 +81,13 @@ if __name__ == '__main__':
     print("path from a to a is", depthFirstSearch('a','a', successorsf))
     print("path from a to m is", depthFirstSearch('a','m', successorsf))
     print("path from a to z is", depthFirstSearch('a','z', successorsf), '\n')
-    log.write('Finished assignment examples\n')
+    print('Finished assignment examples\n')
 
 
     # Used for additional unit testing
     from unittest import main, TestCase
 
-    log.write('Starting additional unit tests\n', 'EVENT')
+    print('Starting additional unit tests\n')
     
     
     #

@@ -14,6 +14,10 @@ NUM=$($1)
 PATH="assignment_" + $NUM
  
 cd $PATH
+
+# Clean up unneeded files
+rm ./*.pyc
+
 tar cvf ..assign$NUM.tar *.py README
 
 #

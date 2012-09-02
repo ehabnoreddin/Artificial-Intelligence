@@ -3,16 +3,15 @@
 '''
 	File: 	    simpleGraph.py
 	Author:     Corey Prophitt <prophitt.corey@gmail.com>
-	Class:	    CS440
+	Class:	    CS440, Colorado State University.
 	License:    GPLv3, see license.txt for more details.
 '''
 
 
 #
-# Standard Library Imports
+# Standard Module Imports
 #
 
-# Let's try to maintain Python 3 portability..
 from __future__ import print_function
 
 from os import name as os_name
@@ -21,37 +20,38 @@ from sys import exit
 
 
 #
-# Custom Library Imports
+# Custom Module Imports
 #
 
 try:
-    # Our implementation of BFS and DFS
     from search import breadthFirstSearch, depthFirstSearch
 except ImportError:
     exit('Problem importing search.py, is the file/folder missing?')
 
 
 #
-# The example graph
+# The example graph given in the assignment description.
 #
 
-# This is the example graph given for this assignment
-successors = {'a':  ['b', 'c', 'd'],
-              'b':  ['e', 'f', 'g'],
-              'c':  ['a', 'h', 'i'],
-              'd':  ['j', 'z'],
-              'e':  ['k', 'l'],
-              'g':  ['m'],
-              'k':  ['z']}
+successors = {
+    'a':  ['b', 'c', 'd'],
+    'b':  ['e', 'f', 'g'],
+    'c':  ['a', 'h', 'i'],
+    'd':  ['j', 'z'],
+    'e':  ['k', 'l'],
+    'g':  ['m'],
+    'k':  ['z']
+}
 
-             
+
 def successorsf(node):
     '''
     Input:
-             A 'node' representing the node you are looking up.
-            
+	    A 'node' representing a node in the successors graph.
+	    The node should be a string representing the key of the node.
+
     Output:
-             A list of children of the given 'node'.
+             Returns a list of children of the given 'node'. 
              
              Returns an empty list if the 'node' doesn't exist, or if the node
              has no children.
@@ -71,7 +71,12 @@ def successorsf(node):
 
 if __name__ == '__main__':
     
+    #
+    # The following is the example output shown in the assignment description.
+    #
+    
     print('Starting assignment examples\n')
+    
     print("Breadth-first\n")
     print("path from a to a is", breadthFirstSearch('a','a', successorsf))
     print("path from a to m is", breadthFirstSearch('a','m', successorsf))
@@ -81,11 +86,16 @@ if __name__ == '__main__':
     print("path from a to a is", depthFirstSearch('a','a', successorsf))
     print("path from a to m is", depthFirstSearch('a','m', successorsf))
     print("path from a to z is", depthFirstSearch('a','z', successorsf), '\n')
+    
     print('Finished assignment examples\n')
 
 
-    # Used for additional unit testing
+    # Used for additional unit testing. Imported here because it makes no sense
+    # to import this if the file is not run as main.
+    #
+    
     from unittest import main, TestCase
+
 
     print('Starting additional unit tests\n')
     
@@ -119,6 +129,24 @@ if __name__ == '__main__':
                 successors = successorsf(node)
                 expected = ['b', 'c', 'd']
                 self.assertEquals(successors, expected)      
+
+            def test_node_in_graph2(self):
+                node = 'b' 
+                successors = successorsf(node)
+                expected = ['e', 'f', 'g']
+                self.assertEquals(successors, expected)     
+
+            def test_node_in_graph3(self):
+                node = 'k' 
+                successors = successorsf(node)
+                expected = ['z']
+                self.assertEquals(successors, expected)  
+
+            def test_node_in_graph4(self):
+                node = 'e' 
+                successors = successorsf(node)
+                expected = ['k', 'l']
+                self.assertEquals(successors, expected)  
 
             def test_none_node(self):
                 node = None

@@ -3,7 +3,7 @@
 '''
 	File: 	    search.py
 	Author:     Corey Prophitt <prophitt.corey@gmail.com>
-	Class:	    CS440
+	Class:	    CS440, Colorado State University.
 	License:    GPLv3, see license.txt for more details.
 '''
 
@@ -78,10 +78,13 @@ def depthFirstSearch(startState, goalState, successorsf, path=[]):
     if not isinstance(goalState, str):
         return []
 
+    if path == [] and successorsf(startState) == []:
+        return []  
+
     path = path + [startState]
     if startState == goalState:
-        return path
-        
+        return path      
+
     if successorsf(startState) == []:
         return []
     

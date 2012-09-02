@@ -3,13 +3,13 @@
 '''
 	File: 	        puzzle.py
 	Author:         Corey Prophitt <prophitt.corey@gmail.com>
-	Class:	        CS440
+	Class:	        CS440, Colorado State University.
 	License:        GPLv3, see license.txt for more details.
 
         Description:
         
-            The puzzle I chose to do was the "3" sliding puzzle. This is easily
-            represented as a graph and transitions are very simple. 
+            The puzzle I chose to do was the (2x2) '3' sliding puzzle. This is
+	    easily represented as a graph and transitions are very simple. 
 '''
 
 #
@@ -26,6 +26,7 @@ def successorsf(gameState):
         
     Output:
         Returns a list of possible transitions from that state.
+
         Returns an empty list if no transitions are possible or if the state
         does not exist.
     
@@ -38,6 +39,7 @@ def successorsf(gameState):
         return []
         
     return state_transitions[gameState]
+
 
 #
 # A board state, useful for printing a pretty path later! 
@@ -67,6 +69,7 @@ class State:
                                                        self.p4,
                                                        wall)
 
+
 def printStates(listOfStates):
     '''
     A quick and dirty function to print the list of states in a more human
@@ -84,7 +87,8 @@ def printStates(listOfStates):
 
 
 #
-# The possible states for the puzzle
+# The possible states for the puzzle. There are a total of 4! / 2 total valid
+# states for this puzzle, therefore there are 12 states. 
 #
 
 states = {
@@ -103,7 +107,9 @@ states = {
 }
 
 #
-# The possible state transitions
+# The possible state transitions. There are always two ways to move per-state.
+# This means there are 12*2 possible transitions for a total of 24 transitions.
+# The following graph depicts all 24 transitions.
 #
 
 state_transitions = {
@@ -123,7 +129,15 @@ state_transitions = {
 
 
 if __name__ == '__main__':
-    print("From A to G (DFS): ")
+
+    #
+    # A few examples of finding paths through the puzzle using BFS and DFS.
+    #
+    
+    print("From NotInGraph to 'L'")    
+    printStates(depthFirstSearch('NotInGraph', 'G', successorsf))
+    
+    print("\nFrom A to G (DFS): ")
     printStates(depthFirstSearch('A', 'G', successorsf))
     
     print("\nFrom A to E (BFS): ")

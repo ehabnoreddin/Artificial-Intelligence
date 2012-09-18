@@ -24,6 +24,7 @@ import search
 
 def printState(state):
     '''Prints a state in a more human friendly way.'''
+    
     return "{0}{1}{2}\n{3}{4}{5}\n{6}{7}{8}".format(state[0],
                                                     state[1],
                                                     state[2],
@@ -96,11 +97,16 @@ def takeActionF(state, action):
 
 
 def printResult(startState, goalState, solutionPath):
+    '''Prints the solution path in a pretty format.'''
+    
     print("Path from ")
     print(printState(startState))
     print("  to")
     print(printState(goalState))
-    print("  is {0} nodes long:".format(len(solutionPath)))
+    if solutionPath == "cutoff" or solutionPath == "failure":
+        print("The path is {0}".format(solutionPath))
+        return
+    print("  is {0} node(s) long:".format(len(solutionPath)))
     for state in solutionPath:
         print(printState(state) + "\n")
 

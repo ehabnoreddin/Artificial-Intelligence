@@ -28,6 +28,7 @@ import search
 
 def printState(state):
     '''Prints a state in a more human friendly way.'''
+    
     return "{0}{1}\n{2}{3}".format(state[0], state[1], state[2], state[3])
     
 def actionsF(state):
@@ -82,6 +83,8 @@ def takeActionF(state, action):
 
 
 def printResult(startState, goalState, solutionPath):
+    '''Prints the solution path in a pretty format.
+    '''
     print("Path from ")
     print(printState(startState))
     print("  to")
@@ -89,7 +92,7 @@ def printResult(startState, goalState, solutionPath):
     if solutionPath == "cutoff" or solutionPath == "failure":
         print("The path is {0}".format(solutionPath))
         return
-    print("  is {0} nodes long:".format(len(solutionPath)))
+    print("  is {0} node(s) long:".format(len(solutionPath)))
     for state in solutionPath:
         print(printState(state) + "\n")
 
@@ -113,11 +116,11 @@ if __name__ == '__main__':
     
     # Setup a test state and goal
     start = [0, 1, 2, 3]
-    goal =  [1, 0, 2, 3]
+    goal =  [1, 3, 0, 2]
     def goalTestF(state):
         return state == goal
 
     # Test printing a solution path
     solution = search.iterativeDeepeningSearch(start, actionsF,
-                                               takeActionF, goalTestF, 3)
+                                               takeActionF, goalTestF, 6)
     printResult(start, goal, solution)

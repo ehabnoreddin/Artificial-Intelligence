@@ -12,44 +12,36 @@
 '''
 
 #
-# The example graph given in the assignment description.
+# Standard module imports
 #
-
-successors = {
-    'a':  ['b', 'c', 'd'],
-    'b':  ['e', 'f', 'g'],
-    'c':  ['a', 'h', 'i'],
-    'd':  ['j', 'z'],
-    'e':  ['k', 'l'],
-    'g':  ['m'],
-    'k':  ['z']
-}
+from copy import copy
 
 
-def iterativeDeepeningSearch(startState, actionsF, takeActionF, goalTestF, maxDepth):
-    if goalTestF:
-        return []
-    if maxDepth == 0:
+def depthLimitedSearchHelper(state, actionsF, takeActionF, goalTestF, depthLimit):
+    path = [state]
+    if goalTestF(state):
+        return state
+    if depthLimit == 0:
         return "cutoff"
-    for action in actionsF():
-        childState = takeActionF(startState, action)
-        result = depthLimitedSearchHelper(childState, actionsF, takeActionF, goalTestF, maxDepth-1)
-        if result is "cutoff":
+    for action in actionsF(state):
+        childState = takeActionF(copy(state), action)
+        result = depthLimitedSearchHelper(childState, actionsF, takeActionF, goalTestF, depthLimit-1)
+        if result == "cutoff":
             cutoffOccurred = True
         else:
-            if result is not "failure":
-                return result
+            if result != "failure":
+                return path + result
     if cutoffOccurred:
         return "cutoff"
     else:
         return "failure"
 
 
-def depthLimitedSearchHelper(state, actionsF, takeActionF, goalTestF, depthLimit) :
+def iterativeDeepeningSearch(startState, actionsF, takeActionF, goalTestF, maxDepth) :
     for depth in range(maxDepth):
-        result = depthLimitedSearchHelper(startState, actionsF, takeActionF, goalTestf, depth)
-        if result is not "cutoff":     
-            return result
+        result = depthLimitedSearchHelper(startState, actionsF, takeActionF, goalTestF, depth)
+        if result != "cutoff":     
+            return startState + result
     return "cutoff"
 
     

@@ -10,7 +10,9 @@
         
             Testing the iterative deepening search on a second puzzle. The
             second puzzle I chose was a 3-puzzle. It's similar, simpler and
-            was easier to test on. 
+            was easier to test on. Plus, I used the 3-puzzle in my first
+            assignment and I wanted to see the new algorithm work on it. The
+            first time I completed the assignment I used a brute force method.
 '''
 
 #
@@ -84,11 +86,38 @@ def printResult(startState, goalState, solutionPath):
     print(printState(startState))
     print("  to")
     print(printState(goalState))
-    print("  is {0} nodes long:", len(solutionPath))
+    if solutionPath == "cutoff" or solutionPath == "failure":
+        print("The path is {0}".format(solutionPath))
+        return
+    print("  is {0} nodes long:".format(len(solutionPath)))
     for state in solutionPath:
-        print(printState(state + "\n"))
+        print(printState(state) + "\n")
 
 
 
 if __name__ == '__main__':
-    pass
+    # Test printState  
+    state = [0, 1, 2, 3]
+    assert(printState(state) == "01\n23")
+    state = [1, 0, 2, 3]
+    assert(printState(state) == "10\n23")
+    
+    # Test actionsF 
+    assert(actionsF(state) == ['left', 'down'])
+    state = [2, 1, 0, 3]
+    assert(actionsF(state) == ['right', 'up'])
+    
+    # Test takeActionF 
+    assert(takeActionF(copy(state), 'right') == [2, 1, 3, 0])
+    assert(takeActionF(copy(state), 'up') == [0, 1, 2, 3])
+    
+    # Setup a test state and goal
+    start = [0, 1, 2, 3]
+    goal =  [1, 0, 2, 3]
+    def goalTestF(state):
+        return state == goal
+
+    # Test printing a solution path
+    solution = search.iterativeDeepeningSearch(start, actionsF,
+                                               takeActionF, goalTestF, 3)
+    printResult(start, goal, solution)

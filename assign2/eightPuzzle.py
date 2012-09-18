@@ -100,9 +100,9 @@ def printResult(startState, goalState, solutionPath):
     print(printState(startState))
     print("  to")
     print(printState(goalState))
-    print("  is {0} nodes long:", len(solutionPath))
+    print("  is {0} nodes long:".format(len(solutionPath)))
     for state in solutionPath:
-        print(printState(state + "\n"))
+        print(printState(state) + "\n")
 
 
 if __name__ == '__main__':

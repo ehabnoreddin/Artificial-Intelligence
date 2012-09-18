@@ -12,9 +12,14 @@
 '''
 
 #
-# Standard module improts
+# Standard module imports
 #
 from copy import copy
+
+#
+# Custom module imports
+#
+import search
 
 
 def printState(state):
@@ -79,7 +84,25 @@ def takeActionF(state, action):
         state[zeroPos], state[zeroPos + 1] = state[zeroPos + 1], state[zeroPos]
         return state
     
+    if action == 'down':
+        state[zeroPos], state[zeroPos + 3] = state[zeroPos + 3], state[zeroPos]
+        return state
+
+    if action == 'up':
+        state[zeroPos], state[zeroPos - 3] = state[zeroPos - 3], state[zeroPos]
+        return state
+    
     return []
+
+
+def printResult(startState, goalState, solutionPath):
+    print("Path from ")
+    print(printState(startState))
+    print("  to")
+    print(printState(goalState))
+    print("  is {0} nodes long:", len(solutionPath))
+    for state in solutionPath:
+        print(printState(state + "\n"))
 
 
 if __name__ == '__main__':
@@ -107,8 +130,11 @@ if __name__ == '__main__':
     # Setup a test state and goal
     start = [1,2,3, 4,0,5, 6,7,8]
     goal =  [1,2,3, 4,5,8, 6,0,7]
-    def goalTestFunction(state):
+    def goalTestF(state):
         return state == goal
 
-    
+    # Test printing a solution path
+    solution = search.iterativeDeepeningSearch(start, actionsF,
+                                               takeActionF, goalTestF, 2)
+    printResult(start, goal, solution)
         

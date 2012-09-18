@@ -24,4 +24,6 @@ very difficult to implment. The additional functions were pretty easy to
 implement as well.
 
 The part of the assignment that gave me trouble as the search algorithm
-itself.
+itself. In particular, I had trouble returning a list of the entire path
+from the start to the goal state. I narrowed down the problem but still had
+trouble returning a proper list of states and their transitions.

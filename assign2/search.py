@@ -28,11 +28,11 @@ def depthLimitedSearchHelper(state, actionsF, takeActionF, goalTestF, depthLimit
         return "cutoff"
     for action in actionsF(state):
         childState = takeActionF(copy(state), action)
-        result = depthLimitedSearchHelper(childState, actionsF, takeActionF, goalTestF, depthLimit-1)
+        result = depthLimitedSearchHelper(childState, actionsF, takeActionF, goalTestF, depthLimit-1)  # <-- Some problem here
         if result == "cutoff":
             cutoffOccurred = True
         elif result != "failure":
-                return result
+            return result # <-- Some problem here
     if cutoffOccurred:
         return "cutoff"
     else:
@@ -44,8 +44,8 @@ def iterativeDeepeningSearch(startState, actionsF, takeActionF, goalTestF, maxDe
     This is almost verbatim from the class notes.'''
     
     for depth in range(maxDepth):
-        result = depthLimitedSearchHelper(startState, actionsF, takeActionF, goalTestF, maxDepth)
-        if result != "cutoff":     
+        result = depthLimitedSearchHelper(startState, actionsF, takeActionF, goalTestF, depth)
+        if result != "cutoff":
             return [result]
     return "cutoff"
 

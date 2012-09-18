@@ -104,7 +104,7 @@ def printResult(startState, goalState, solutionPath):
     print("  to")
     print(printState(goalState))
     if solutionPath == "cutoff" or solutionPath == "failure":
-        print("The path is {0}".format(solutionPath))
+        print("  was not found due to depth {0}".format(solutionPath))
         return
     print("  is {0} node(s) long:".format(len(solutionPath)))
     for state in solutionPath:
@@ -142,5 +142,10 @@ if __name__ == '__main__':
     # Test printing a solution path
     solution = search.iterativeDeepeningSearch(start, actionsF,
                                                takeActionF, goalTestF, 2)
+    printResult(start, goal, solution)
+    
+    # Test printing a solution path
+    solution = search.iterativeDeepeningSearch(start, actionsF,
+                                               takeActionF, goalTestF, 10)
     printResult(start, goal, solution)
         

@@ -12,7 +12,7 @@
 '''
 
 ###############################################################################
-# The IDS search algorithm (provided by Charles Anderson) and modified by me
+# The IDS search algorithm (provided by Chuck Anderson) and modified by me
 ###############################################################################
 
 COUNT = 0
@@ -62,19 +62,13 @@ def depthLimitedSearchHelper(state, actionsF, takeActionF, goalTestF, depthLimit
 # The RBFS algorithm (provided in class notes) and modified by me
 ###############################################################################
 
-def actionsF(s):                              
-    try:                                      
-	## step cost of each action is 1
-	return [(succ,1) for succ in successors[s]]
-    except KeyError:
-	return []
-    def takeActionF(s,a):
-       return a
-    def goalTestF(s):
-       return s == goal
-    def h1(s):
-       return 0
+NCOUNT = 0
 
+def getNCount():
+    global NCOUNT
+    tmp = NCOUNT
+    NCOUNT = 0
+    return tmp
 
 class Node:
     def __init__(self, state, f=0, g=0 ,h=0):
@@ -92,6 +86,7 @@ def RBFS(startState, actionsF, takeActionF, goalTestF, hF):
     return RBFSHelper(startNode, actionsF, takeActionF, goalTestF, hF, float('inf'))
 
 def RBFSHelper(parentNode, actionsF, takeActionF, goalTestF, hF, fmax):
+    global NCOUNT
     if goalTestF(parentNode.state):
         return ([parentNode.state], parentNode.g)
     ## Construct list of children nodes with f, g, and h values
@@ -102,6 +97,7 @@ def RBFSHelper(parentNode, actionsF, takeActionF, goalTestF, hF, fmax):
     for action in actions:
         (childState,stepCost) = takeActionF(parentNode.state, action)
         h = hF(childState)
+	NCOUNT += 1
         g = parentNode.g + stepCost
         f = max(h+g, parentNode.f)
         childNode = Node(state=childState, f=f, g=g, h=h)
@@ -131,45 +127,12 @@ def RBFSHelper(parentNode, actionsF, takeActionF, goalTestF, hF, fmax):
 
 def ebf(numberNodes, depth, precision=0.01):
     if depth == 0:
-	return 0
-    return 0
+	return 0.000
+    return numberNodes**(1.0/depth)
 
 ###############################################################################
 ###############################################################################
 
 
 if __name__ == "__main__":
-    #		The graph in visual form
-    #
-    #                   a
-    #         b         c          d
-    #   e     f   g   a h i      j   z
-    # k   l       m
-    # z
-
-    successors = {'a':  ['b', 'c', 'd'],
-                  'b':  ['e', 'f', 'g'],
-                  'c':  ['a', 'h', 'i'],
-                  'd':  ['j', 'z'],
-                  'e':  ['k', 'l'],
-                  'g':  ['m'],
-                  'k':  ['z']}
-
-    def actionsF(state):
-        return successors[state]
-
-    def takeActionF(state,action):
-        return action
-
-    def goalTestF(state):
-        state == 'z'
-
-    deb = False
-
-    print "Iterative Deepening"
-    print "path from a to z (with maxdepth of 20) is",
-    result = iterativeDeepeningSearch('a',actionsF,takeActionF, lambda (s): s=='z', 20)
-    print result
-    print "path from a to z (with maxdepth of 2) is",
-    result = iterativeDeepeningSearch('a',actionsF,takeActionF, lambda (s): s=='z', 2)
-    print result
+    pass

@@ -31,8 +31,14 @@ Questions
 
 	2) What parts of the assignment did you find difficult?
 
-	The heuristic functions were quite difficult to formulate. There are
-	many possibilities to try and determining one I liked was hard. I also
-	had to make sure the function was admissible which added to the 
-	complexity. Gaining confidence in the function was also a hard part of
-	the assignment. 
+	The EBF function was difficult for me. I couldn't follow the example notes,
+	so I searched the web. I did find a very quick and easy method for calculating
+	EBF. You simply calculate n**1/d
+	
+	It's close and calculation is fast. I know it's not the exact, but it was the
+	best I could do.
+	
+	Useful Link:
+	
+	http://ozark.hendrix.edu/~ferrer/courses/335/f11/lectures/effective-branching.html
+

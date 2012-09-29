@@ -15,7 +15,17 @@
 # Standard module import statements
 ###############################################################################
 
+from __future__ import print_function       # Let's keep Python 3 in mind
+from sys import exit                        # For bad import statements
 
+###############################################################################
+# Custom module import statements
+###############################################################################
+
+try:
+    pass
+except ImportError as ie:
+    exit("Error while importing a required module ({}).".format(ie))
 
 ###############################################################################
 ###############################################################################

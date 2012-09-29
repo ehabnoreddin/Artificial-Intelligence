@@ -18,11 +18,16 @@
 
 from __future__ import print_function       # Let's keep Python 3 in mind
 from random import shuffle                  # For the extra credit function
+from sys import exit                        # For bad import statements
 
 ###############################################################################
 # Custom module import statements
 ###############################################################################
 
+try:
+    pass
+except ImportError as ie:
+    exit("Error while importing a required module ({}).".format(ie))
 
 ###############################################################################
 ###############################################################################
@@ -53,16 +58,11 @@ def opponentRandom(board, target=' '):
 def main():
     '''The primary assignment functionality.'''
     print("Running main..\n\n")
-
-def tests():
-    '''A suite of tests for assign4.py functions.'''
-    print("Running tests..\n\n")
+    
 
 ###############################################################################
 ###############################################################################
 
     
 if __name__ == '__main__':
-    if __debug__:
-        tests()
     main()

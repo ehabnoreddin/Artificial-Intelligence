@@ -61,7 +61,7 @@ def h1(state, start=startState):
     '''Returns a constant cost of 0 for every state.'''
     return 0
 
-def h2b(state, start=startState):
+def h2(state, start=startState):
     '''Returns the traditional 'Manhattan distance' cost from the startState
     to the state.'''
          
@@ -70,13 +70,17 @@ def h2b(state, start=startState):
         
     return manhattanDistance(startRC[0], startRC[1], goalRC[0], goalRC[1])
        
-def h2(state, start=startState):
+def h2b(state, start=startState):
     '''Returns the 'Manhattan distance' cost from the startState to the
-    state. Often used in 8-puzzles.'''
+    state. Often used in 8-puzzles. This was borrowed
+    from a professor's lecture:
+    
+        www.ics.uci.edu/~smyth/courses/cs271/topic3_heuristicsearch.ppt
+    '''
     
     totalSum = 0    
     for i in range(len(state)):
-        totalSum += h2(state, start)
+        totalSum += h2b(state, start)
         
     return totalSum       
         
@@ -84,7 +88,8 @@ def h3(state, start=startState):
     '''A custom implementation that is admissible. This function determines
     how many tiles in the state are different than those in the start state.
     This means if the start is the goal the difference is zero. The
-    function can return up to 9 if every tile is different.'''
+    function can return up to 9 if every tile is different.    
+    '''
     
     moved = 0
     for i in range(len(state)):

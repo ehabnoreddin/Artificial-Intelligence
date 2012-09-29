@@ -126,6 +126,7 @@ def RBFSHelper(parentNode, actionsF, takeActionF, goalTestF, hF, fmax):
 ###############################################################################
 
 def ebf(numberNodes, depth, precision=0.01):
+    '''A quick and dirty way to calculate EBF, slightly off.'''
     if depth == 0:
 	return 0.000
     return numberNodes**(1.0/depth)

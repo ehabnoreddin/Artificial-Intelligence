@@ -1,0 +1,38 @@
+File
+====
+	README (no extension)
+	
+	
+Assignment
+==========
+	3 - Search (A*)
+	
+	
+Author
+======
+	Corey Prophitt <prophitt.corey@gmail.com>
+
+	
+Questions
+=========
+
+	1) Why do you believes your h3 heuristic function is admissible? 
+
+	I believe a heuristic function can be admissible if it does not over
+	estimate the cost. This can be done by simplifying the problem and
+	making sure you never over estimate in that scenario. Then in more
+	complex scenarios you will theoretically never over estimate. I believe
+	my h3 function satisfies this requirement.
+	
+	Useful Link:
+	
+	http://en.wikipedia.org/wiki/Admissible_heuristic
+	
+
+	2) What parts of the assignment did you find difficult?
+
+	The heuristic functions were quite difficult to formulate. There are
+	many possibilities to try and determining one I liked was hard. I also
+	had to make sure the function was admissible which added to the 
+	complexity. Gaining confidence in the function was also a hard part of
+	the assignment. 

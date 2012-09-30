@@ -34,8 +34,25 @@ except ImportError as ie:
 
 
 ###############################################################################
-# Functions defined for this assignment
+# Functions and classes defined for this assignment
 ###############################################################################
+
+class Game(object):
+    def __init__(self, gameObject, opponentF, depthLimit):
+        self.game = gameObject
+        self.opponent = opponentF
+        self.depthLimit = depthLimit
+        self.isPlaying = False
+    
+    def play(self):
+        self.isPlaying = True
+        while self.isPlaying:
+            if self.game.isOver():
+                self.isPlaying = False
+        
+    
+    def summary(self):
+        print("Number of moves explored: {}".format(self.game.movesExplored()))
 
 def opponent(board, target=' '):
     '''Returns the index of the target in the board if one exists. Returns -1
@@ -57,8 +74,11 @@ def opponentRandom(board, target=' '):
   
 def main():
     '''The primary assignment functionality.'''
-    print("Running main..\n\n")
     
+    print("Running main game..\n\n")
+    #game = Game(TTT(), opponent, 15)
+    #game.play()
+    #game.summary()
 
 ###############################################################################
 ###############################################################################

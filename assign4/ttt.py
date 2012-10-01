@@ -38,6 +38,8 @@ class TTT:
 
     def __init__(self,debug=False):
         self.debug = debug
+        self.iMoveCount = 0
+        self.winner = None
         self.board =  [' ']*9
         self.player = 'X'
         if False:
@@ -61,10 +63,13 @@ class TTT:
         isXWon = any([all([wi in whereX for wi in w]) for w in wins])
         isOWon = any([all([wi in whereO for wi in w]) for w in wins])
         if isXWon:
+            self.winner = 'X'
             return 1 if self.playerLookAHead is 'X' else -1
         elif isOWon:
+            self.winner = 'O'
             return 1 if self.playerLookAHead is 'O' else -1
         elif ' ' not in self.board:
+            self.winner = 'Tie'
             return 0
         else:
             return None
@@ -73,6 +78,7 @@ class TTT:
         return self.getUtility() != None
 
     def makeMove(self,move):
+        self.iMoveCount = self.iMoveCount + 1
         self.board[move] = self.playerLookAHead
         self.playerLookAHead = 'X' if self.playerLookAHead=='O' else 'O'
 
@@ -96,21 +102,4 @@ class TTT:
 
 
 if __name__ == '__main__':
-    import gameSearch as gs
-
-    debug = False
-    
-    def playGameNegamax(game):
-        print(game)
-        while not game.isOver():
-            value,move = gs.negamax(game,9)
-            if move == None :
-                print("move is None. Stopping")
-                break
-            game.makeMove(move)
-            print("Player",game.player,"to",move,"for value",value)
-            if not debug: print()
-            print(game)
-            game.changePlayer()
-    
-    playGameNegamax(TTT(debug))
+    pass

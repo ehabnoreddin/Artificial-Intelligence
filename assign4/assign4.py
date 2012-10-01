@@ -25,34 +25,38 @@ from sys import exit                        # For bad import statements
 ###############################################################################
 
 try:
-    pass
+    from gameSearch import negamax
+    from ttt import TTT
 except ImportError as ie:
     exit("Error while importing a required module ({}).".format(ie))
 
 ###############################################################################
 ###############################################################################
 
-
 ###############################################################################
 # Functions and classes defined for this assignment
 ###############################################################################
 
-class Game(object):
-    def __init__(self, gameObject, opponentF, depthLimit):
-        self.game = gameObject
-        self.opponent = opponentF
-        self.depthLimit = depthLimit
-        self.isPlaying = False
+debug = False
+
+def playGameNegamax(game):
+    '''The original game function given for the assignment with added code for
+    displaying the move count once the game is over.'''
     
-    def play(self):
-        self.isPlaying = True
-        while self.isPlaying:
-            if self.game.isOver():
-                self.isPlaying = False
+    print(game)
+    while not game.isOver():
+        value,move = negamax(game,9)
+        if move == None :
+            print("move is None. Stopping")
+            break
+        game.makeMove(move)
+        print("Player",game.player,"to",move,"for value",value)
+        if not debug: print()
+        print(game)
+        game.changePlayer()
         
-    
-    def summary(self):
-        print("Number of moves explored: {}".format(self.game.movesExplored()))
+    print('Number of moves explored: {}'.format(game.iMoveCount))
+
 
 def opponent(board, target=' '):
     '''Returns the index of the target in the board if one exists. Returns -1
@@ -76,13 +80,11 @@ def main():
     '''The primary assignment functionality.'''
     
     print("Running main game..\n\n")
-    #game = Game(TTT(), opponent, 15)
-    #game.play()
-    #game.summary()
 
+    playGameNegamax(TTT())
+    
 ###############################################################################
 ###############################################################################
-
     
 if __name__ == '__main__':
     main()

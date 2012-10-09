@@ -44,6 +44,10 @@ Questions
 	This made sense to me because it demonstrated the depth it took to find the
 	"solution" (winning).
 	
+	I admit the EBF values look odd (very high) but atleast the values map to the
+	two algorithms as one would expect. It is higher for no prunning and lower with
+	prunning...
+	
   
 Notes:
 ======

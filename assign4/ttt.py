@@ -43,7 +43,9 @@ class TTT:
         self.board =  [' ']*9
         self.player = 'X'
         if False:
-            self.board = ['X','X',' ', 'X','O','O',' ',' ',' ']
+            self.board = ['X','X',' ',
+			  'X','O','O',
+			  ' ',' ',' ']
             self.player = 'O'
         self.playerLookAHead = self.player
 

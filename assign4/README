@@ -18,6 +18,37 @@ Questions
 
 	1) Discuss any difficulties with the assignment and list useful links.
         
+	I found the assignment to be fairly straight forward. I did find alpha
+	beta prunning to be a little difficult. I found Wikipedia to be
+	helpful when trying to learn more about it.
+	
+	http://en.wikipedia.org/wiki/Alpha-beta_pruning
+	
+	I also had concerns when implementing IDS within the search. I did find
+	the authors link to be fairly useful when scanning code.
+	
+	http://code.google.com/p/aima-python/
         
-        2) Discuss the number of moves and the EBF for the two games. 
+        2) Discuss the number of moves and the EBF for the two games.
+	
+	The EBF was a little odd to me-- I couldn't find any way to truly measure
+	the depth for each algorithm. I assumed the depth was the same as nodes
+	expanded (moves checked). This resulted in fairly high EBFs for me when
+	using the IDS search and IDSab, but when using the normal algorithm I got
+	fairly accurate EBF. On average IDS/IDSab was twice as good as the normal
+	negamax.
+	
+	I used a less accurate EBF function but its calculation was quicker. I
+	would have gotten better accuracy with another EBF function. I also
+	believe having some guidelines as to measure depth would have made it
+	a little easier to calculate. I made the assumption the depth and
+	nodes explored were equal.
+	
   
+Notes:
+======
+
+I completed the extra credit problem (average wins agains 100 games agains a
+random opponent). The function is commented out by default (I assume you don't want
+to wait for it to finish when checking HW. You can uncomment it if you want to
+check it).

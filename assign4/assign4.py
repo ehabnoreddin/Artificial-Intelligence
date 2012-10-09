@@ -25,7 +25,7 @@ from sys import exit                        # For bad import statements
 ###############################################################################
 
 try:
-    from gameSearch import ebf, getCount, negamax, negamaxIDS, negamaxIDSab
+    from gameSearch import ebf, negamax, negamaxIDS, negamaxIDSab
     from ttt import TTT
 except ImportError as ie:
     exit("Error while importing a required module ({}).".format(ie))
@@ -64,7 +64,11 @@ def playGameNegamax(game, IDS=False, ab=False):
     
     print(game)
     value = 0
+    turns = 0
+    
     while not game.isOver():
+	if game.player == 'X':
+		turns = turns + 1
 	if not IDS and game.player == 'X':
 	    value,move = negamax(game,9)
 	else:
@@ -87,7 +91,7 @@ def playGameNegamax(game, IDS=False, ab=False):
         game.changePlayer()
 
     movesCount = '{} moves explored '.format(game.iMoveCount)
-    ebfValue = 'for an ebf of {:.3f}'.format(ebf(game.iMoveCount, getCount()))
+    ebfValue = 'for an ebf of {:.3f}'.format(ebf(game.iMoveCount, turns))
     mebf = 'alpha-beta prunning, ' + movesCount + ebfValue + '.'
     
     print('\nWith ' + mebf if ab else '\nWithout ' + mebf)

@@ -33,16 +33,16 @@ Questions
 	
 	The EBF was a little odd to me-- I couldn't find any way to truly measure
 	the depth for each algorithm. I assumed the depth was the same as nodes
-	expanded (moves checked). This resulted in fairly high EBFs for me when
-	using the IDS search and IDSab, but when using the normal algorithm I got
-	fairly accurate EBF. On average IDS/IDSab was twice as good as the normal
-	negamax.
+	expanded (moves checked). This resulted in fairly high EBFs and approached
+	1.0 quickly. I ended up using the number of turns to represent the depth and
+	I used the number of total moves as the nodes.
 	
 	I used a less accurate EBF function but its calculation was quicker. I
 	would have gotten better accuracy with another EBF function. I also
 	believe having some guidelines as to measure depth would have made it
-	a little easier to calculate. I made the assumption the depth and
-	nodes explored were equal.
+	a little easier to calculate. I decided on using player turns as my depth.
+	This made sense to me because it demonstrated the depth it took to find the
+	"solution" (winning).
 	
   
 Notes:

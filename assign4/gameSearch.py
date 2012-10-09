@@ -74,18 +74,6 @@ def negamax(game, depthLeft):
             if debug: print()
     return bestValue, bestMove
 
-COUNT = 0
-
-def getCount():
-    global COUNT
-    tmp = COUNT
-    COUNT = 0
-    return tmp
-
-def incCount():
-    global COUNT
-    COUNT = COUNT + 1
-
 def negamaxIDS(game, depthLeft, ab=False):
     '''Negamax done using IDS.'''
     if debug: print('   '*(10-depthLeft), game)
@@ -99,8 +87,6 @@ def negamaxIDS(game, depthLeft, ab=False):
     bestMove = None
 
     for move in game.getMoves():
-	incCount()	
-	
         # Apply a move to current state
         game.makeMove(move)
         # Use depth-first search to find eventual utility value and back it up.

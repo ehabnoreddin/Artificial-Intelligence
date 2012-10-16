@@ -74,19 +74,21 @@ def getMoves(board):
     global state_transitions
     return state_transitions[tuple(board)]
 
-nGames = 1                              # number of games
+nGames = 10000                          # number of games
 rho = 0.1                               # learning rate
 epsilonExp = 0.999                      # rate of epsilon decay
 Q = {}                                  # initialize Q dictionary
 epsilon = 1.0                           # initial epsilon value
 showMoves = True                        # flag to print each board change
 
-for game in range(nGames):              # iterate over multiple games
-
+for index, game in enumerate(range(nGames)):
+    
     epsilon *= epsilonExp
     step = 0
     board = [1,0,0, 2,0,0, 3,0,0]
     done = False
+
+    print("Game {}:\n======".format(index + 1))
 
     if showMoves:
         printPegs(board)

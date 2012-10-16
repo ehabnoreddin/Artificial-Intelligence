@@ -26,7 +26,10 @@ except ImportError as ie:
 ###############################################################################
 ###############################################################################
 
-# This is a pretty epic table.... 
+
+# This is a pretty epic table. Represents all possible valid state transitions
+# for the Towers of Hanoi.
+#
 state_transitions = {
     (1,0,0, 2,0,0, 3,0,0) : [[0,0,0, 2,0,0, 3,1,0], [0,0,0, 2,0,0, 3,0,1]],
     (0,0,0, 2,0,0, 3,1,0) : [[0,0,0, 0,0,0, 3,1,2], [0,0,0, 0,2,0, 3,1,0], [1,0,0, 2,0,0, 3,0,0]],
@@ -83,9 +86,14 @@ def plotOutcomes(outcomes,nGames,game):
 
 
 def foundGoal(board):
+    '''Returns True if the current board state is the goal state, returns
+    False otherwise.
+    '''
     return board == [0,0,1, 0,0,2, 0,0,3]
 
 def printPegs(board):
+    '''Prints the current board state in a prettier more human friendly way.
+    '''
     pegs = '''
         %d %d %d
         %d %d %d
@@ -95,61 +103,81 @@ def printPegs(board):
     print(pegs % tuple(board))
 
 def getMoves(board):
+    '''Finds all possible moves from the current board state.'''
     global state_transitions
     return state_transitions[tuple(board)]
 
-nGames = 10000                          # number of games
-rho = 0.1                               # learning rate
-epsilonExp = 0.999                      # rate of epsilon decay
-Q = {}                                  # initialize Q dictionary
-epsilon = 1.0                           # initial epsilon value
-showMoves = True                        # flag to print each board change
 
-for game in range(nGames):
+###############################################################################
+# The script entry point
+###############################################################################
+
+if __name__ == '__main__':
+
+    results = []
+
+    nGames = 5000                           # number of games
+    rho = 0.1                               # learning rate
+    epsilonExp = 0.999                      # rate of epsilon decay
+    Q = {}                                  # initialize Q dictionary
+    epsilon = 1.0                           # initial epsilon value
+    showMoves = True                        # flag to print each board change
+
+    for game in range(nGames):
     
-    epsilon *= epsilonExp
-    step = 0
-    board = [1,0,0, 2,0,0, 3,0,0]
-    done = False
+        epsilon *= epsilonExp
+        step = 0
+        board = [1,0,0, 2,0,0, 3,0,0]
+        done = False
 
-    print("Game {}:\n======".format(game + 1))
-
-    if showMoves:
-        printPegs(board)
-
-    while not done:
-        step += 1
-
-        validMoves = getMoves(board)
-        if np.random.uniform() < epsilon:
-            move = choice(validMoves)       # Randomly chooses list item
-        else:
-            # Greedy move. Collect Q values for valid moves from current board.
-            # Select move with highest Q value
-            qs = []
-            for m in validMoves:
-                qs.append(Q.get((tuple(board), tuple(m)), -1))
-            move = validMoves[np.argmax(np.asarray(qs))]
-
-        key = (tuple(board), tuple(move))
-
-        if key not in Q:
-            Q[(tuple(board), tuple(move))] = -1
-
-        boardNew = copy(move)
+        print("Game {}:\n======".format(game + 1))
 
         if showMoves:
-            printPegs(boardNew)
+            printPegs(board)
 
-        if foundGoal(boardNew):
-            Q[(tuple(board), tuple(move))] = 0
-            done = True
+        while not done:
+            step += 1
 
-        if step > 1:
-            Q[(tuple(boardOld), tuple(moveOld))] += rho * (Q[(tuple(board), tuple(move))] - Q[(tuple(boardOld), tuple(moveOld))])
+            validMoves = getMoves(board)
+            if np.random.uniform() < epsilon:
+                move = choice(validMoves)       # Randomly chooses list item
+            else:
+                # Greedy move. Collect Q values for valid moves from current board.
+                # Select move with highest Q value
+                qs = []
+                for m in validMoves:
+                    qs.append(Q.get((tuple(board), tuple(m)), -1))
+                    move = validMoves[np.argmax(np.asarray(qs))]
 
-        boardOld,moveOld = board,move
-        board = boardNew
+            key = (tuple(board), tuple(move))
 
-    # plotOutcomes(step, nGames, game) # not working in OSX
-    print("Game: {} took {} steps to find the solution.\n".format(game + 1, step + 1))
+            if key not in Q:
+                Q[(tuple(board), tuple(move))] = -1
+
+            boardNew = copy(move)
+
+            if showMoves:
+                printPegs(boardNew)
+
+            if foundGoal(boardNew):
+                Q[(tuple(board), tuple(move))] = 0
+                done = True
+
+            if step > 1:
+                Q[(tuple(boardOld), tuple(moveOld))] += rho * (Q[(tuple(board), tuple(move))] - Q[(tuple(boardOld), tuple(moveOld))])
+
+            boardOld,moveOld = board,move
+            board = boardNew
+
+        # plotOutcomes(step, nGames, game) # not working in OSX
+        print("Game: {} took {} steps to find the solution.\n".format(game + 1, step + 1))
+        results.append((game + 1, step +1))
+
+    # I didn't have the "plot" so I thought I would write some info about it,
+    # so I could track the results as I tested...
+    #
+    aveSteps = 0
+    for game, steps in results:
+        aveSteps += steps
+    aveSteps = aveSteps / len(results)
+    print("The average number of steps for {} games was {}.\n".format(len(results), aveSteps))

@@ -30,3 +30,9 @@ Questions
     all. It seems to work well-- it learns and produces faster paths as it 
     plays many games. Works well after 10,000. I wish I had the plotting up and
     working so I could see the results.
+    
+    Since I wasn't able to plot the results I added a little more printing of
+    the data at the end of the script. I used it to test the connection 
+    between number of games and average number of steps to completion. I noticed
+    the number of steps are much higher for lower number of games, and around
+    5000-6000 games begins to produce a pretty constant rate of 6-step solutions.

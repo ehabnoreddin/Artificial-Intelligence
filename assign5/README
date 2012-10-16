@@ -20,9 +20,13 @@ Questions
     
     I ran into a number of issues... matplot lib didn't work at all on my
     system (Mac OSX). I wish it did-- it worked on my work machine but not on
-    my home machine (big problem!). I commented out the plotting code..
+    my home machine (big problem!). I commented out the plotting code while I 
+    worked.
     
     I had a difficult time finding how to calculate the list of possible moves
     at a given state. I tried to create a map of valid transitions but it 
     became unrulely quick and ended up producing infinite loops etc. It took
-    me a while to track down all the possible transitions...
+    me a while to track down all the possible transitions... I think I got them
+    all. It seems to work well-- it learns and produces faster paths as it 
+    plays many games. Works well after 10,000. I wish I had the plotting up and
+    working so I could see the results.

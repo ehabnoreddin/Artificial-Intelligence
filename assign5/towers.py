@@ -26,6 +26,7 @@ except ImportError as ie:
 ###############################################################################
 ###############################################################################
 
+# This is a pretty epic table.... 
 state_transitions = {
     (1,0,0, 2,0,0, 3,0,0) : [[0,0,0, 2,0,0, 3,1,0], [0,0,0, 2,0,0, 3,0,1]],
     (0,0,0, 2,0,0, 3,1,0) : [[0,0,0, 0,0,0, 3,1,2], [0,0,0, 0,2,0, 3,1,0], [1,0,0, 2,0,0, 3,0,0]],
@@ -58,6 +59,29 @@ state_transitions = {
 }
 
 
+#plt.ion() # not working on OSX
+
+def plotOutcomes(outcomes,nGames,game):
+    '''I tried to 'guess' how to plot without being able to see it.
+    '''
+    if game==0:
+        return
+
+    plt.clf()
+
+    nBins = 100
+    nPer = nGames/nBins
+
+    plt.subplot(2,1,1)
+    plt.plot(game, nPer)
+    plt.xlabel('Games')
+    plt.ylabel('Steps')
+    plt.subplot(2,1,2)
+    plt.plot(game,outcomes,'r-',label='Steps')
+    plt.legend(loc="center")
+    plt.draw()
+
+
 def foundGoal(board):
     return board == [0,0,1, 0,0,2, 0,0,3]
 
@@ -81,14 +105,14 @@ Q = {}                                  # initialize Q dictionary
 epsilon = 1.0                           # initial epsilon value
 showMoves = True                        # flag to print each board change
 
-for index, game in enumerate(range(nGames)):
+for game in range(nGames):
     
     epsilon *= epsilonExp
     step = 0
     board = [1,0,0, 2,0,0, 3,0,0]
     done = False
 
-    print("Game {}:\n======".format(index + 1))
+    print("Game {}:\n======".format(game + 1))
 
     if showMoves:
         printPegs(board)
@@ -112,7 +136,6 @@ for index, game in enumerate(range(nGames)):
         if key not in Q:
             Q[(tuple(board), tuple(move))] = -1
 
-        # CHANGE
         boardNew = copy(move)
 
         if showMoves:
@@ -127,3 +150,6 @@ for index, game in enumerate(range(nGames)):
 
         boardOld,moveOld = board,move
         board = boardNew
+
+    # plotOutcomes(step, nGames, game) # not working in OSX
+    print("Game: {} took {} steps to find the solution.\n".format(game + 1, step + 1))

@@ -18,8 +18,11 @@ Questions
 
 	1) Describe any problems you ran into..
     
-    The entire thing was a problem. Matplot lib doesn't play nicely on a 64-bit
-    Mac OSX with a 32-bit Python. Numpy is a pain in the neck and seems a bit
-    unneeded for the assignment. 
+    I ran into a number of issues... matplot lib didn't work at all on my
+    system (Mac OSX). I wish it did-- it worked on my work machine but not on
+    my home machine (big problem!). I commented out the plotting code..
     
-    
+    I had a difficult time finding how to calculate the list of possible moves
+    at a given state. I tried to create a map of valid transitions but it 
+    became unrulely quick and ended up producing infinite loops etc. It took
+    me a while to track down all the possible transitions...

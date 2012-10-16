@@ -25,11 +25,11 @@
 /* Begin PBXLegacyTarget section */
 		049814F3162CE38300EA8BBD /* assign5 */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(SOURCE_ROOT)/towers.py";
+			buildArgumentsString = "python -O";
 			buildConfigurationList = 049814F6162CE38300EA8BBD /* Build configuration list for PBXLegacyTarget "assign5" */;
 			buildPhases = (
 			);
-			buildToolPath = /Library/Frameworks/Python.framework/Versions/2.7/bin/python;
+			buildToolPath = /usr/bin/env;
 			buildWorkingDirectory = "";
 			dependencies = (
 			);
@@ -154,6 +154,7 @@
 				049814F8162CE38300EA8BBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

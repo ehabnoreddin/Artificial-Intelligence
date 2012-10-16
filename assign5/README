@@ -17,3 +17,9 @@ Questions
 =========
 
 	1) Describe any problems you ran into..
+    
+    The entire thing was a problem. Matplot lib doesn't play nicely on a 64-bit
+    Mac OSX with a 32-bit Python. Numpy is a pain in the neck and seems a bit
+    unneeded for the assignment. 
+    
+    

@@ -62,10 +62,19 @@ del roomsAndTimes # we don't need this hanging around any more..
 ###############################################################################
 
 def constraints(var, val, var2, val2):
+    '''This function weighs the constraints between variables and their 
+    values. Returns True if the constraint is satisfied, False otherwise.
+    '''
+
     result = val != val2
-    if var[2] != '1' and var2[2] != '1':
-        result = result and val[1] != val2[1]
+
+    if var[2] == '1' and var2[2] == '1':
+        result = result and val[0] != val2[0]
+    else:
+        result = result and val[0] != val2[0] and val[1] != val2[1]
+
     return result
+
 
 def display(schedule, steps, conflicts = -1):
     '''Prints the solution to the schedule problem in a friendly way.
@@ -84,11 +93,56 @@ def display(schedule, steps, conflicts = -1):
         else:
             csb425Classes.append( (c, schedule[c][1]) )
 
-    print "CSB130: ", csb130Classes
+    classesAt9 = "9  %s  %s  %s" % findClasses(csb130Classes, csb325Classes, csb425Classes, 9)
+    classesAt10 = "10 %s  %s  %s" % findClasses(csb130Classes, csb325Classes, csb425Classes, 10)
+    classesAt11 = "11 %s  %s  %s" % findClasses(csb130Classes, csb325Classes, csb425Classes, 11)
+    classesAt12 = "12 %s  %s  %s" % findClasses(csb130Classes, csb325Classes, csb425Classes, 12)
+    classesAt1 = "1  %s  %s  %s" % findClasses(csb130Classes, csb325Classes, csb425Classes, 1)
+    classesAt2 = "2  %s  %s  %s" % findClasses(csb130Classes, csb325Classes, csb425Classes, 2)
+    classesAt3 = "3  %s  %s  %s" % findClasses(csb130Classes, csb325Classes, csb425Classes, 3)
+    classesAt4 = "4  %s  %s  %s" % findClasses(csb130Classes, csb325Classes, csb425Classes, 4)
 
-    print "CSB325: ", csb325Classes
+    classCount = len(csb130Classes) + len(csb325Classes) + len(csb425Classes)
 
-    print "CSB425: ", csb425Classes
+    print "The schedule took {} steps to find.".format(steps)
+    print "A total of {} classes were scheduled.".format(classCount)
+    if conflicts > -1:
+        print "The total number of conflicts were {}.".format(conflicts)
+    print ""
+
+    print "   CSB130 CSB325 CSB425"
+    print "-----------------------"
+    print classesAt9
+    print classesAt10
+    print classesAt11
+    print classesAt12
+    print classesAt1
+    print classesAt2
+    print classesAt3
+    print classesAt4
+
+
+def findClasses(csb130Classes, csb325Classes, csb425Classes, time):
+
+    c130 = filter(lambda x: x[1] == time, csb130Classes)
+    c325 = filter(lambda x: x[1] == time, csb325Classes)
+    c425 = filter(lambda x: x[1] == time, csb425Classes)
+
+    if not c130:
+        c130 = "None "
+    else:
+        c130 = c130[0][0]
+    if not c325:
+        c325 = "None "
+    else:
+        c325 = c325[0][0]
+    if not c425:
+        c425 = "None "
+    else:
+        c425 = c425[0][0]
+
+    return c130, c325, c425
+
 
 def main():
     '''The main script entry point.'''

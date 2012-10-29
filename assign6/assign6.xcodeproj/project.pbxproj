@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		04477597163D9B42000D2D59 /* csp.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = csp.py; sourceTree = "<group>"; };
+		04477597163D9B42000D2D59 /* minconflicts.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = minconflicts.py; sourceTree = "<group>"; };
 		049814FA162CE57200EA8BBD /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		04F2A5981634B53800DA405A /* schedule.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = schedule.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -17,7 +17,7 @@
 			isa = PBXGroup;
 			children = (
 				049814FA162CE57200EA8BBD /* README */,
-				04477597163D9B42000D2D59 /* csp.py */,
+				04477597163D9B42000D2D59 /* minconflicts.py */,
 				04F2A5981634B53800DA405A /* schedule.py */,
 			);
 			sourceTree = "<group>";

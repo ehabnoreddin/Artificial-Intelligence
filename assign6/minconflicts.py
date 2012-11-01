@@ -57,6 +57,7 @@ def conflicted_vars(current,vars,constraints,neighbors):
 
 def nconflicts(var, val, assignment, constraints, neighbors):
     "Return the number of conflicts var=val has with other variables."
+
     def conflict(var2):
         val2 = assignment.get(var2, None)
         return val2 != None and not constraints(var, val, var2, val2)

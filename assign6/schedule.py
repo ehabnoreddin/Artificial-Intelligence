@@ -49,7 +49,9 @@ roomsAndTimes = (
 
 # The same, neighbors doesn't help guide the search at all.
 DOMAINS = dict( [ (room, roomsAndTimes) for room in VARIABLES ] )
+
 NEIGHBORS = dict( [ (room, roomsAndTimes) for room in VARIABLES ] )
+#NEIGHBORS = dict( [ (room, filter(lambda x: x != room, VARIABLES)) for room in VARIABLES ] )
 
 del roomsAndTimes # we don't need this hanging around any more..
 
@@ -66,20 +68,27 @@ def constraints(var, val, var2, val2):
     values. Returns True if the constraint is satisfied, False otherwise.
     '''
 
-    result = val != val2
+    print "constraints called"
+    #print "Var: ", var, "Var2: ", var2
+    #print "Val: ", val, "Val2: ", val2
 
-    if var[2] == '1' and var2[2] == '1':
-        result = result and val[0] != val2[0]
-    else:
-        result = result and val[0] != val2[0] and val[1] != val2[1]
+    if val == val2:
+        return False
 
-    return result
+    if var[2] == var2[2] and var2[2] != "1":
+        return False
+
+    return True
 
 
 def display(schedule, steps, conflicts = -1):
     '''Prints the solution to the schedule problem in a friendly way.
     Requires the solution schedule and the number of steps as input.
     '''
+
+    if not schedule:
+        print "None found, depth met."
+        return
 
     csb130Classes = []
     csb325Classes = []
@@ -123,6 +132,8 @@ def display(schedule, steps, conflicts = -1):
 
 
 def findClasses(csb130Classes, csb325Classes, csb425Classes, time):
+    '''A helper function, organizes some class data for printing.
+    '''
 
     c130 = filter(lambda x: x[1] == time, csb130Classes)
     c325 = filter(lambda x: x[1] == time, csb325Classes)
@@ -144,18 +155,44 @@ def findClasses(csb130Classes, csb325Classes, csb425Classes, time):
     return c130, c325, c425
 
 
+def violatedPrefs(solution):
+    pass
+
 def main():
     '''The main script entry point.'''
+    global VARIABLES, DOMAINS, NEIGHBORS
+    
+    # Part 1:
+    #   Run min-conflicts 3 times and displays the schedule and steps taken
 
-    # Run min-conflicts 3 times and displays the schedule and steps taken
+    for i in range(1):
+        sol, steps = mc.min_conflicts(VARIABLES, DOMAINS, constraints, NEIGHBORS)
 
-    sol, steps = mc.min_conflicts(VARIABLES, DOMAINS, constraints, NEIGHBORS)
+        print sol
+        display(sol, steps)
 
-    display(sol, steps)
+    # Part 2:
+    #   Run min-conflicts wrapper 3 times, displays schedule as well as the
+    #   number of violated preferences while searching and the required steps.
+    '''
+    solutionMap = {}
+    numberTrials = 10 
+    while numberTrials > 0:
+        sol, steps = mc.min_conflicts(VARIABLES, DOMAINS, constraints, NEIGHBORS)
+        conflictsCount = violatedPrefs(sol)
+        display(sol, steps, conflictsCount)
+        solutionMap[conflictsCount] = (sol, steps)
 
-    # Run min-conflicts wrapper 3 times, displays schedule as well as the
-    # number of violated preferences while searching and the required steps.
+    smallestViolation = None
+    for k in solutionMap:
+        if smallestViolation is None or smallestViolation < k:
+            smallestViolation = k
 
+    print "The best solutions was..."
+    sol = solutionMap[smallestViolation][0]
+    steps = solutionMap[smallestViolation][1]
+    display(sol,steps,smallestViolation)
+    '''
 
 ###############################################################################
 ###############################################################################

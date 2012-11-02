@@ -27,7 +27,7 @@ import random
 # Functions
 ###############################################################################
 
-def min_conflicts(vars, domains, constraints, neighbors, max_steps=1000):
+def min_conflicts(vars, domains, constraints, neighbors, max_steps=14):
     """Solve a CSP by stochastic hillclimbing on the number of conflicts."""
     # Generate a complete assignment for all vars (probably with conflicts)
     current = {};

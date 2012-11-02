@@ -58,6 +58,12 @@ write("Debug mode is on.")
 # Solution-specific stuff!
 ###############################################################################
 
+# Number of times to run part1()
+PARTONERUNS = 1
+
+# Number of times to run part2()
+PARTTWORUNS = 0
+
 # Classrooms
 vars = hw6.Classes
 write("Variable count = {}".format(len(vars)))
@@ -90,10 +96,17 @@ def part1():
     write(sol)
     display(sol, steps)
 
-def conflictsCount(solution):
-    conflictCount = 0
+def bonusPoints(solution):
+    points = 0
 
-    return conflictCount
+    for k in solution:
+        v = solution[k]
+        if (k == 'CS160' or k == 'CS161') and (v[1] == '1' or v[1] == '2'):
+            points += 1
+        if v[1] != '9' or v[1] != '12' or v[1] != '4':
+            points += 1
+
+    return points
 
 def part2():
     '''Completes one pass of homework 6's part 2.'''
@@ -102,18 +115,18 @@ def part2():
     runDict = {}
     for i in range(10):
         sol, steps = mc.min_conflicts(vars, domains, constraints, neighbors)
-        violations = conflictsCount(sol)
-        runDict[violations] = (sol, steps)
+        points = bonusPoints(sol)
+        runDict[points] = (sol, steps)
 
-    lowest = None
+    highest = None
     for k in runDict:
-        if lowest == None or lowest > k:
-            lowest = k
+        if highest == None or highest < k:
+            highest = k
 
-    print "The solution with least violations was found"
-    display(runDict[lowest][0], runDict[lowest][1], lowest)
+    print "The solution with least violations/most preferences was found"
+    display(runDict[highest][0], runDict[highest][1], highest)
 
-def display(solution, steps, conflicts = None):
+def display(solution, steps, prefs = None):
     '''Display the solution in a pretty way!'''
 
     if not solution:
@@ -121,8 +134,8 @@ def display(solution, steps, conflicts = None):
         return
 
     print "The steps used were {}".format(steps)
-    if conflicts != None:
-        print "The violation count was {}".format(conflicts)
+    if prefs != None:
+        print "The preference count was {}".format(prefs)
 
     print ""
     print " TIME   CSB 160    CSB 325    CSB  425"
@@ -157,9 +170,9 @@ def getTimeString(solution, time):
 ###############################################################################
 
 def main():
-    for i in range(1):
+    for i in range(PARTONERUNS):
         part1()
-    for i in range(0):
+    for i in range(PARTTWORUNS):
         part2()
 
 if __name__ == '__main__':

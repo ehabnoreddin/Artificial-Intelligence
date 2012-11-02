@@ -21,3 +21,12 @@ Questions
     
     The display function was hard to work out. It was a lot of data all 
     jumbled around and organizing it in a neat way was quite involved.
+    
+    In addition, I had trouble sorting out part 2 of the problem. I didn't
+    decrement the loop counter. Instead, I just tried to count the number of
+    preferences in the solution and took the solution with the highest number
+    of preferences.
+    
+    I had a hard time figuring out the variable-domains-neighbors for this
+    problem. I kept getting strange results. I didn't find any useful resources
+    online or in the book.

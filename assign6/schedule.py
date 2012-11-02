@@ -51,7 +51,7 @@ roomsAndTimes = (
 DOMAINS = dict( [ (room, roomsAndTimes) for room in VARIABLES ] )
 #NEIGHBORS = dict( [ (room, roomsAndTimes) for room in VARIABLES ] )
 
-NEIGHBORS = dict( [ (room, VARIABLES) for room in VARIABLES ] )
+NEIGHBORS = dict( [ (room, filter(lambda x: x != room, VARIABLES)) for room in VARIABLES ] )
 
 del roomsAndTimes # we don't need this hanging around any more..
 

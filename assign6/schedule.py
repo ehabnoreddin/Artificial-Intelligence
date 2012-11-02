@@ -49,9 +49,9 @@ roomsAndTimes = (
 
 # The same, neighbors doesn't help guide the search at all.
 DOMAINS = dict( [ (room, roomsAndTimes) for room in VARIABLES ] )
+#NEIGHBORS = dict( [ (room, roomsAndTimes) for room in VARIABLES ] )
 
-NEIGHBORS = dict( [ (room, roomsAndTimes) for room in VARIABLES ] )
-#NEIGHBORS = dict( [ (room, filter(lambda x: x != room, VARIABLES)) for room in VARIABLES ] )
+NEIGHBORS = dict( [ (room, VARIABLES) for room in VARIABLES ] )
 
 del roomsAndTimes # we don't need this hanging around any more..
 
@@ -68,9 +68,9 @@ def constraints(var, val, var2, val2):
     values. Returns True if the constraint is satisfied, False otherwise.
     '''
 
-    print "constraints called"
-    #print "Var: ", var, "Var2: ", var2
-    #print "Val: ", val, "Val2: ", val2
+    #print "Var {}, Val {} : Var2 {}, Val2 {}.".format(var, val, var2, val2)
+    #print "Val == Val2: {}".format(val == val2)
+    #print 'var[2] == var2[2] and var2[2] != "1": {}'.format(var[2] == var2[2] and var2[2] != "1")
 
     if val == val2:
         return False

@@ -30,7 +30,7 @@ except ImportError as ie:
 # Utilities
 ###############################################################################
 
-DEBUG = True
+DEBUG = False
 
 def write(msg):
     if DEBUG:
@@ -59,10 +59,10 @@ write("Debug mode is on.")
 ###############################################################################
 
 # Number of times to run part1()
-PARTONERUNS = 1
+PARTONERUNS = 3
 
 # Number of times to run part2()
-PARTTWORUNS = 0
+PARTTWORUNS = 3
 
 # Classrooms (22 of them)
 vars = hw6.Classes
@@ -74,9 +74,14 @@ domains = dict( [(classRoom, hw6.RoomTimePairs[:]) for classRoom in vars] )
 def constraints(var, val, var2, val2):
     '''Returns False if the constraints were not satisfied. True otherwise.'''
 
-    #write("Var: {}, Val: {}\nVar2: {}, Val2: {}".format(var, val, var2, val2))
+    # Classes can't be in the same room at the same time
+    if val is val2:
+        write('vals equal: {} is {}'.format(var, var2))
+        return False
 
-    
+    # Non-100 level classes can't exist at the same time slot
+    if var[2] is var2[2] and var[2] is not '1' and val[1] is val2[1]:
+        return False
 
     return True
 
@@ -120,6 +125,7 @@ def part2():
         if highest == None or highest < k:
             highest = k
 
+    print ""
     print "The solution with least violations/most preferences was found"
     display(runDict[highest][0], runDict[highest][1], highest)
 
@@ -142,21 +148,21 @@ def display(solution, steps, prefs = None):
 def getTimeString(solution, time):
     '''A helper function to generate rows in the display.'''
 
-    c160 = "None"
+    c130 = "None"
     c325 = "None"
     c425 = "None"
 
     for classRoom in solution:
         pair = solution[classRoom]
         if pair[1] == time:
-            if pair[0] == 'CSB 160':
-                c160 = classRoom
+            if pair[0] == 'CSB 130':
+                c130 = classRoom
             elif pair[0] == 'CSB 325':
                 c325 = classRoom
             else:
                 c425 = classRoom
 
-    return "   {:2}     {:5}     {:5}       {:5}".format(time, c160, c325, c425)
+    return "   {:2}     {:5}     {:5}       {:5}".format(time, c130, c325, c425)
 
 ###############################################################################
 ###############################################################################

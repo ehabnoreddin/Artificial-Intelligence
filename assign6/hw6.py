@@ -59,7 +59,6 @@ RoomTimePairs = []
 for room in Rooms:
     for time in Times:
         RoomTimePairs.append((room, time))
-RoomTimePairs = tuple(RoomTimePairs)
 
 if __name__ == '__main__':
     pass

@@ -64,36 +64,33 @@ PARTONERUNS = 1
 # Number of times to run part2()
 PARTTWORUNS = 0
 
-# Classrooms
+# Classrooms (22 of them)
 vars = hw6.Classes
-write("Variable count = {}".format(len(vars)))
-dumpTuple("The Variables", "ClassRoom", vars)
 
-# Classroom -> (Room, Time) pairs
-domains = dict( [(classRoom, hw6.RoomTimePairs) for classRoom in vars] )
-write("Domain count = {}".format(len(domains)))
-write("Domain length = {}".format(len(domains['CS160'])))
-dumpDict("The Domains", "ClassRoom", "RoomTimePair", domains)
+# Classroom -> (Room, Time) pairs (22 of them, 24 domain values each..)
+domains = dict( [(classRoom, hw6.RoomTimePairs[:]) for classRoom in vars] )
 
 # Defines the constrains between our ClassRoom -> RoomTimePair
 def constraints(var, val, var2, val2):
     '''Returns False if the constraints were not satisfied. True otherwise.'''
 
-    write("Var: {}, Val: {}\nVar2: {}, Val2: {}".format(var, val, var2, val2))
+    #write("Var: {}, Val: {}\nVar2: {}, Val2: {}".format(var, val, var2, val2))
+
+    
 
     return True
 
-# The other classrooms near each class (all other classes)
-neighbors = dict( [(classRoom, vars) for classRoom in vars] )
-write("Neighbor count = {}".format(len(neighbors)))
-write("Neighbor length = {}".format(len(neighbors['CS160'])))
-dumpDict("The Neighbors", "ClassRoom", "Neighbors", neighbors)
+# The other classrooms near each class (all other classes but itself, 21 vals)
+neighbors = dict( [(classRoom,
+                    filter(lambda x: x != classRoom, vars))
+                   for classRoom in vars] )
+
 
 def part1():
     '''Completes one pass of homework 6's part 1.'''
     write("Executing part 1")
     sol, steps = mc.min_conflicts(vars, domains, constraints, neighbors)
-    write(sol)
+    write(sol), write(len(sol))
     display(sol, steps)
 
 def bonusPoints(solution):

@@ -28,5 +28,8 @@ Questions
     of preferences.
     
     I had a hard time figuring out the variable-domains-neighbors for this
-    problem. I kept getting strange results. I didn't find any useful resources
-    online or in the book.
+    problem. I kept getting strange results. I did find the author's definition
+    of the variables-domains-neighbors to be helpful.
+    
+    link:
+        http://aima-python.googlecode.com/svn/trunk/csp.py

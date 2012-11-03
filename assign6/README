@@ -25,7 +25,12 @@ Questions
     In addition, I had trouble sorting out part 2 of the problem. I didn't
     decrement the loop counter. Instead, I just tried to count the number of
     preferences in the solution and took the solution with the highest number
-    of preferences.
+    of preferences. It's difficult to see because there isn't a lot of room
+    for the classes to move around in the schedule, but you can see the number
+    of steps usually goes up a lot while searching for preferences because it 
+    needs to search a lot more usually. You can also notice cs160 and cs161 
+    usually always end up at 1pm or 2pm which is a preference. The others are
+    a little harder to see.
     
     I had a hard time figuring out the variable-domains-neighbors for this
     problem. I kept getting strange results. I did find the author's definition

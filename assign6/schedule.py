@@ -115,7 +115,7 @@ def part2():
     write("Executing part 2")
 
     runDict = {}
-    for i in range(10):
+    for i in range(100):
         sol, steps = mc.min_conflicts(vars, domains, constraints, neighbors)
         points = bonusPoints(sol)
         runDict[points] = (sol, steps)

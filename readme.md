@@ -16,7 +16,7 @@ Dependencies
 License
 ====
 
-        Copyright (C) 2012, Corey Prophitt <www.marustudios.com>.
+        Copyright (C) 2012, Corey Prophitt.
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
